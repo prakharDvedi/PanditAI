@@ -36,3 +36,5 @@ class ChartResponse(BaseModel):
     jaimini_karakas: Dict[str, Any]
     predictions: List[Dict[str, Any]]
     ai_reading: Optional[Union[Dict[str, str], str]] = None
+    dasha: Optional[Dict[str, Any]] = None
+    yogas: Optional[List[Dict[str, Any]]] = None

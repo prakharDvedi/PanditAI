@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ChartViewer from "@/components/ChartViewer";
+import TimelineViewer from "@/components/TimelineViewer";
 
 type CategoryKey =
   | "personality"
@@ -182,10 +183,7 @@ export default function PredictionPage() {
 
           {/* TAB: TIMELINE */}
           {activeTab === "timeline" && (
-            <div className="flex flex-col items-center justify-center h-full text-white/30">
-              <div className="text-6xl mb-4">⏳</div>
-              <p>Vimshottari Dasha Timeline coming in next update...</p>
-            </div>
+            <TimelineViewer timeline={data?.dasha?.timeline} />
           )}
 
           {/* TAB: YOGAS */}
@@ -205,59 +203,6 @@ export default function PredictionPage() {
           )}
         </div>
       </main>
-
-      <style jsx>{`
-            90deg,
-            transparent,
-            #ffffff,
-            #a855f7,
-            #ffffff,
-            transparent
-          );
-          animation: thunder 2s ease-in-out forwards;
-        }
-
-        @keyframes thunder {
-          from {
-            transform: translateX(-100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0%);
-            opacity: 1;
-          }
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes fadeInScale {
-          from {
-            opacity: 0;
-            transform: scale(0.85);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        .animate-fadeIn {
-          animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        .animate-fadeInScale {
-          animation: fadeInScale 0.6s ease-out;
-        }
-      `}</style>
     </div>
   );
 }
