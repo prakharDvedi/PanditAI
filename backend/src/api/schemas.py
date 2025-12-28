@@ -19,13 +19,15 @@ class BirthDetails(BaseModel):
 
 
 class PlanetData(BaseModel):
-    id: int
+    id: Optional[int] = None
     absolute_longitude: float
     sign_id: int
     degree: float
-    is_retrograde: bool
+    is_retrograde: bool = False
     navamsa_sign_id: Optional[int] = None
+    d9_sign_id: Optional[int] = None
     house_number: Optional[int] = None
+    speed: Optional[float] = None
 
 
 class ChartResponse(BaseModel):
