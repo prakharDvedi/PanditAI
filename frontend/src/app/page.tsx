@@ -5,11 +5,11 @@ import LocationAutocomplete from "@/components/LocationAutocomplete";
 
 export default function Home() {
   const [formData, setFormData] = useState({
-    dob: "1990-01-01",
-    time: "12:00",
-    city: "New York",
-    lat: 40.7128,
-    lon: -74.006,
+    dob: "2005-08-20",
+    time: "8:24",
+    city: "Delhi",
+    lat: 28.6139,
+    lon: 77.209,
     ayanamsa: "lahiri",
   });
 
