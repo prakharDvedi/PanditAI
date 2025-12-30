@@ -1,16 +1,17 @@
 import os
 import requests
 
-# We use a reliable mirror for the standard Swiss Ephemeris files (1800-2399 AD)
-# Source: chapagain/php-swiss-ephemeris (Standard SE files)
-BASE_URL = "https://raw.githubusercontent.com/chapagain/php-swiss-ephemeris/master/sweph/"
+BASE_URL = (
+    "https://raw.githubusercontent.com/chapagain/php-swiss-ephemeris/master/sweph/"
+)
 
 FILES_TO_DOWNLOAD = [
     "sepl_18.se1",  # Planets (Sun - Pluto)
-    "semo_18.se1"   # Moon
+    "semo_18.se1",  # Moon
 ]
 
 TARGET_DIR = "./data/ephemeris"
+
 
 def download_ephemeris():
     if not os.path.exists(TARGET_DIR):
@@ -19,25 +20,25 @@ def download_ephemeris():
 
     for filename in FILES_TO_DOWNLOAD:
         file_path = os.path.join(TARGET_DIR, filename)
-        
-        # Check if file exists and has data (bigger than 0 bytes)
+
         if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
-            print(f"✅ {filename} already exists (skipping).")
+            print(f"  {filename} already exists (skipping).")
             continue
-            
+
         print(f"⬇️ Downloading {filename} from mirror...")
         url = BASE_URL + filename
         try:
             r = requests.get(url, stream=True)
             if r.status_code == 200:
-                with open(file_path, 'wb') as f:
+                with open(file_path, "wb") as f:
                     for chunk in r.iter_content(chunk_size=1024):
                         f.write(chunk)
-                print(f"✅ Successfully downloaded {filename}")
+                print(f"Successfully downloaded {filename}")
             else:
-                print(f"❌ Failed to download {filename} (Status: {r.status_code})")
+                print(f"Failed to download {filename} (Status: {r.status_code})")
         except Exception as e:
-            print(f"❌ Error downloading {filename}: {e}")
+            print(f"Error downloading {filename}: {e}")
+
 
 if __name__ == "__main__":
     download_ephemeris()

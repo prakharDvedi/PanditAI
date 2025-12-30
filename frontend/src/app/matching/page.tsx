@@ -29,7 +29,6 @@ const DEFAULT_DETAILS: BirthDetails = {
 };
 
 export default function MatchingPage() {
-  // State for Two People
   const [p1, setP1] = useState<BirthDetails>({
     ...DEFAULT_DETAILS,
     name: "Person 1",
@@ -60,7 +59,6 @@ export default function MatchingPage() {
     }
   };
 
-  // Helper to update state
   const updateP1 = (field: keyof BirthDetails, val: any) =>
     setP1((prev) => ({ ...prev, [field]: val }));
   const updateP2 = (field: keyof BirthDetails, val: any) =>

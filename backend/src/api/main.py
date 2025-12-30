@@ -80,7 +80,7 @@ if os.path.exists("models/destiny_net.pth"):
     try:
         destiny_model.load_state_dict(torch.load("models/destiny_net.pth"))
         destiny_model.eval()
-        print("✅ DL Model Loaded")
+        print("  DL Model Loaded")
     except:
         print("⚠️ DL Model Load Failed")
 

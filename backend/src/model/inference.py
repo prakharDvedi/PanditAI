@@ -93,8 +93,8 @@ def generate_horoscope_reading(predictions, chart_meta):
 
             # --- DEBUG BLOCK: PRINT ERROR DETAILS IF FAILED ---
             if response.status_code != 200:
-                print(f"❌ Groq API Error: {response.status_code}")
-                print(f"❌ Details: {response.text}")
+                print(f"  Groq API Error: {response.status_code}")
+                print(f"  Details: {response.text}")
                 response.raise_for_status()
 
             raw_content = response.json()["choices"][0]["message"]["content"]
