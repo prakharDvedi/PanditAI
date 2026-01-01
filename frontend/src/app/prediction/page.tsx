@@ -16,16 +16,15 @@ type CategoryKey =
   | "miscellaneous";
 
 const categories: { key: CategoryKey; title: string; icon: string }[] = [
-  { key: "personality", title: "Personality", icon: "♈" },
-  { key: "health", title: "Health", icon: "♋" },
-  { key: "money", title: "Money", icon: "♉" },
-  { key: "career", title: "Career", icon: "♑" },
-  { key: "love", title: "Love", icon: "♓" },
-  { key: "miscellaneous", title: "Miscellaneous", icon: "✶" },
+  { key: "personality", title: "Personality", icon: "🧑‍🦱👧" },
+  { key: "health", title: "Health", icon: "❤️‍🩹" },
+  { key: "money", title: "Money", icon: "🤑🫰" },
+  { key: "career", title: "Career", icon: "🏢💼" },
+  { key: "love", title: "Love", icon: "🥰💌" },
+  { key: "miscellaneous", title: "Miscellaneous", icon: "🥀" },
 ];
 
 export default function PredictionPage() {
-  const [activeCard, setActiveCard] = useState<CategoryKey | null>(null);
   const [data, setData] = useState<any>(null);
   const [activeTab, setActiveTab] = useState("analysis");
   const [isLoaded, setIsLoaded] = useState(false);
@@ -45,8 +44,8 @@ export default function PredictionPage() {
 
   // Tabs Configuration
   const tabs = [
-    { id: "analysis", label: "🔮 Analysis" },
-    { id: "charts", label: "📐 Charts" },
+    { id: "analysis", label: "📏 Analysis" },
+    { id: "charts", label: "🗺️ Charts" },
     { id: "timeline", label: "⏳ Timeline" },
     { id: "yogas", label: "🧘 Yogas" },
     { id: "chat", label: "💬 Chat" },
@@ -87,7 +86,7 @@ export default function PredictionPage() {
           </div>
 
           {/* Destiny Score (Placeholder if data missing) */}
-          <div className="flex items-center gap-4 bg-white/5 rounded-full px-6 py-2 border border-white/10">
+          <div className="group relative flex items-center gap-4 bg-white/5 rounded-full px-6 py-2 border border-white/10 cursor-help">
             <div className="text-right">
               <div className="text-[10px] uppercase tracking-widest text-white/50">
                 Destiny Score
@@ -99,6 +98,17 @@ export default function PredictionPage() {
             <div className="h-10 w-10 rounded-full border-2 border-amber-200/30 flex items-center justify-center">
               <span className="text-lg">🌟</span>
             </div>
+
+            {/* tooltip */}
+            <div className="absolute top-full mt-2 right-0 w-64 p-4 bg-zinc-900 border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 text-xs text-zinc-300 leading-relaxed translate-y-2 group-hover:translate-y-0">
+              <p>
+                <strong className="text-amber-200 block mb-1">
+                  Vedic Strength Index
+                </strong>
+                Aggregated score based on planetary strengths (Shadbala),
+                benefic aspects, and Raja Yogas formatted in your birth chart.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -109,7 +119,6 @@ export default function PredictionPage() {
               key={tab.id}
               onClick={() => {
                 setActiveTab(tab.id);
-                setActiveCard(null);
               }}
               className={`relative px-1 py-2 text-sm tracking-widest uppercase transition-all duration-300 ${
                 activeTab === tab.id
@@ -136,53 +145,27 @@ export default function PredictionPage() {
                 isLoaded ? "opacity-100" : "opacity-0"
               }`}
             >
-              {/* Keep existing Grid Logic here, compacted */}
-              {!activeCard ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {categories.map((cat) => (
-                    <button
-                      key={cat.key}
-                      onClick={() => setActiveCard(cat.key)}
-                      className="group relative text-left outline-none"
-                    >
-                      <div className="absolute inset-0 bg-amber-200/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                      <div className="relative h-48 p-6 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm flex flex-col justify-between transition-all duration-500 group-hover:border-amber-200/20 group-hover:-translate-y-1">
-                        <span className="text-2xl font-light text-amber-100/40 group-hover:text-amber-100/80 transition-colors duration-500">
-                          {cat.icon}
-                        </span>
-                        <div>
-                          <h3 className="text-lg font-serif tracking-widest text-white/80 group-hover:text-white transition-colors duration-500">
-                            {cat.title}
-                          </h3>
-                        </div>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <div className="max-w-4xl mx-auto animate-reveal">
-                  <div className="relative p-10 rounded-3xl border border-white/10 bg-white/[0.01] backdrop-blur-3xl shadow-2xl">
-                    <div className="flex justify-between items-center mb-6">
-                      <span className="text-xs tracking-[0.4em] uppercase text-amber-200/60">
-                        {categories.find((c) => c.key === activeCard)?.title}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {categories.map((cat) => (
+                  <Link
+                    key={cat.key}
+                    href={`/prediction/${cat.key}`}
+                    className="group relative text-left outline-none block"
+                  >
+                    <div className="absolute inset-0 bg-amber-200/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    <div className="relative h-48 p-6 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm flex flex-col justify-between transition-all duration-500 group-hover:border-amber-200/20 group-hover:-translate-y-1">
+                      <span className="text-2xl font-light text-amber-100/40 group-hover:text-amber-100/80 transition-colors duration-500">
+                        {cat.icon}
                       </span>
-                      <button
-                        onClick={() => setActiveCard(null)}
-                        className="text-white/30 hover:text-white transition"
-                      >
-                        ✕
-                      </button>
+                      <div>
+                        <h3 className="text-lg font-serif tracking-widest text-white/80 group-hover:text-white transition-colors duration-500">
+                          {cat.title}
+                        </h3>
+                      </div>
                     </div>
-                    <p className="text-lg font-serif leading-relaxed text-white/90 whitespace-pre-line">
-                      {/* Handle Data Access Safely */}
-                      {(data?.ai_reading && typeof data.ai_reading === "object"
-                        ? data.ai_reading[activeCard]
-                        : "Predictive data not found. Please regenerate.") ||
-                        "The celestial stars are silent."}
-                    </p>
-                  </div>
-                </div>
-              )}
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
 
