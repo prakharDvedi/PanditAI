@@ -42,7 +42,7 @@ export default function PredictionPage() {
     setIsLoaded(true);
   }, []);
 
-  // Tabs Configuration
+  // tabs configuration
   const tabs = [
     { id: "analysis", label: "📏 Analysis" },
     { id: "charts", label: "🗺️ Charts" },
@@ -53,13 +53,13 @@ export default function PredictionPage() {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-[#08080a] text-[#f5f5f7] font-sans selection:bg-amber-200/30 flex flex-col">
-      {/* 🌌 Atmospheric Background */}
+      {/* atmospheric background */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,_#1a1a2e,_transparent_70%)] opacity-40 pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_#0d0d0d,_transparent_50%)] pointer-events-none" />
 
-      {/* 🏛️ Dashboard Header */}
+      {/* dashboard header */}
       <header className="relative z-20 pt-8 px-8 pb-4 border-b border-white/5 bg-black/20 backdrop-blur-md">
-        {/* Top Navigation Bar */}
+        {/* top navigation bar */}
         <div className="max-w-7xl mx-auto flex justify-between items-center mb-6 text-xs uppercase tracking-widest text-white/40">
           <div className="flex gap-6">
             <Link href="/" className="hover:text-amber-200 transition-colors">
@@ -75,7 +75,7 @@ export default function PredictionPage() {
         </div>
 
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          {/* Brand & Title */}
+          {/* brand & title */}
           <div className="text-center md:text-left">
             <h1 className="text-xs tracking-[0.6em] uppercase text-white/40 mb-1">
               PanditAI
@@ -85,7 +85,7 @@ export default function PredictionPage() {
             </div>
           </div>
 
-          {/* Destiny Score (Placeholder if data missing) */}
+          {/* destiny score (placeholder if data missing) */}
           <div className="group relative flex items-center gap-4 bg-white/5 rounded-full px-6 py-2 border border-white/10 cursor-help">
             <div className="text-right">
               <div className="text-[10px] uppercase tracking-widest text-white/50">
@@ -112,7 +112,7 @@ export default function PredictionPage() {
           </div>
         </div>
 
-        {/* Navigation Tabs */}
+        {/* navigation tabs */}
         <div className="max-w-7xl mx-auto mt-8 flex gap-8 overflow-x-auto pb-2 scrollbar-hide">
           {tabs.map((tab) => (
             <button
@@ -135,10 +135,10 @@ export default function PredictionPage() {
         </div>
       </header>
 
-      {/* MAIN CONTENT AREA */}
+      {/* main content area */}
       <main className="relative z-10 flex-1 overflow-y-auto p-4 md:p-8">
         <div className="max-w-7xl mx-auto min-h-[500px]">
-          {/* TAB: ANALYSIS */}
+          {/* tab: analysis */}
           {activeTab === "analysis" && (
             <div
               className={`transition-all duration-700 ${
@@ -169,18 +169,18 @@ export default function PredictionPage() {
             </div>
           )}
 
-          {/* TAB: CHARTS */}
+          {/* tab: charts */}
           {activeTab === "charts" && <ChartViewer />}
 
-          {/* TAB: TIMELINE */}
+          {/* tab: timeline */}
           {activeTab === "timeline" && (
             <TimelineViewer timeline={data?.dasha?.timeline} />
           )}
 
-          {/* TAB: YOGAS */}
+          {/* tab: yogas */}
           {activeTab === "yogas" && <YogaList yogas={data?.yogas} />}
 
-          {/* TAB: CHAT */}
+          {/* tab: chat */}
           {activeTab === "chat" && (
             <AstrologerChat context={data?.meta?.fact_sheet} />
           )}

@@ -106,7 +106,7 @@ export default function MatchingPage() {
 
       <main className="max-w-5xl mx-auto p-6 md:p-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Person 1 */}
+          {/* person 1 input section */}
           <section className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-xl">
             <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-4">
               First Person
@@ -162,7 +162,7 @@ export default function MatchingPage() {
             </div>
           </section>
 
-          {/* Person 2 */}
+          {/* person 2 input section */}
           <section className="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-xl">
             <h2 className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-4">
               Second Person
@@ -220,6 +220,7 @@ export default function MatchingPage() {
         </div>
 
         <div className="mt-10 flex flex-col items-center gap-4">
+          {/* matching action button */}
           <button
             onClick={handleMatch}
             disabled={loading}
@@ -230,6 +231,7 @@ export default function MatchingPage() {
         </div>
 
         {result && (
+          // result display section
           <div className="mt-12 bg-zinc-900 border border-zinc-800 rounded-2xl p-8 shadow-2xl">
             <div className="flex flex-col md:flex-row items-center gap-8 mb-8">
               <div className="w-32 h-32 rounded-full border-4 border-zinc-800 flex items-center justify-center bg-zinc-950">
