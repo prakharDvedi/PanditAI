@@ -74,8 +74,8 @@ export default function AnalysisCategoryPage() {
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div className="flex-1">
-            <h1 className="text-xl font-serif text-amber-100/90 tracking-wide flex items-center gap-3">
-              <span className="text-2xl">{meta.icon}</span>
+            <h1 className="text-sm tracking-widest uppercase text-amber-100/90 flex items-center gap-3">
+              <span className="text-xl">{meta.icon}</span>
               {meta.title} Analysis
             </h1>
           </div>

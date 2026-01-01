@@ -158,7 +158,7 @@ export default function PredictionPage() {
                         {cat.icon}
                       </span>
                       <div>
-                        <h3 className="text-lg font-serif tracking-widest text-white/80 group-hover:text-white transition-colors duration-500">
+                        <h3 className="text-sm tracking-widest uppercase text-white/50 group-hover:text-amber-200 transition-colors duration-500">
                           {cat.title}
                         </h3>
                       </div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import LocationAutocomplete from "@/components/LocationAutocomplete";
 
+//default data of me
 export default function Home() {
   const [formData, setFormData] = useState({
     dob: "2005-08-20",
@@ -30,7 +31,6 @@ export default function Home() {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -38,11 +38,9 @@ export default function Home() {
     setResult(null);
 
     try {
-      // Parse date and time from form inputs
       const date = new Date(formData.dob);
       const [hours, minutes] = formData.time.split(":").map(Number);
 
-      // Prepare request payload for backend
       const payload = {
         year: date.getFullYear(),
         month: date.getMonth() + 1, // JavaScript months are 0-indexed
@@ -75,7 +73,7 @@ export default function Home() {
       const data = await response.json();
       console.log("Backend response:", data);
 
-      // Store full prediction data (includes meta.destiny_score, charts, etc.)
+      // store full prediction data
       if (data) {
         localStorage.setItem("prediction", JSON.stringify(data));
         localStorage.setItem("birth_details", JSON.stringify(payload));
@@ -93,30 +91,11 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col relative overflow-hidden">
-      {/* Decorative Gold Glows */}
-      <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[#ff8c42]/20 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#ffd700]/30 rounded-full blur-[100px] pointer-events-none" />
-
       <main className="flex-1 flex flex-col lg:flex-row items-center justify-center p-6 lg:p-24 gap-12 z-10">
-        {/* Left: Hero Text */}
         <h2 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight">
           Welcome to <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff8c42] via-[#ffd700] to-[#ff8c42] animate-pulse">
-            PanditAI
-          </span>
+          <span className="text-amber-500">PanditAI</span>
         </h2>
-
-        {/* New Feature Link */}
-        <div className="pt-4">
-          <a
-            href="/matching"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
-          >
-            <span className="text-rose-200 text-sm font-medium tracking-wider uppercase">
-              Try Horoscope Matching
-            </span>
-          </a>
-        </div>
 
         {/* Right: Form */}
         <div className="flex-1 w-full max-w-md">
@@ -207,6 +186,17 @@ export default function Home() {
                 {loading ? "Generating..." : "Generate Horoscope"}
               </button>
             </form>
+          </div>
+
+          <div className="mt-6 text-center">
+            <a
+              href="/matching"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
+            >
+              <span className="text-rose-200 text-sm font-medium tracking-wider uppercase">
+                Also Try Horoscope Matching with your crush
+              </span>
+            </a>
           </div>
         </div>
       </main>
