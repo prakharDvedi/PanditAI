@@ -3,7 +3,7 @@
 import { useState } from "react";
 import LocationAutocomplete from "@/components/LocationAutocomplete";
 
-//default data of me
+// default data of me
 export default function Home() {
   const [formData, setFormData] = useState({
     dob: "2005-08-20",
@@ -55,7 +55,7 @@ export default function Home() {
 
       console.log("Sending to backend:", payload);
 
-      // Call backend API
+      // call backend api
       const API_URL =
         process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
       const response = await fetch(`${API_URL}/calculate`, {
@@ -97,7 +97,7 @@ export default function Home() {
           <span className="text-amber-500">PanditAI</span>
         </h2>
 
-        {/* Right: Form */}
+        {/* right: form */}
         <div className="flex-1 w-full max-w-md">
           <div className="bg-white/5 backdrop-blur-xl border border-[#ff8c42]/20 rounded-lg shadow-2xl shadow-[#ff8c42]/10 p-8">
             <div className="text-center mb-6">
@@ -164,6 +164,7 @@ export default function Home() {
                 <label className="block text-sm font-medium mb-2">
                   Birth Location
                 </label>
+                {/* birth location input */}
                 <LocationAutocomplete onLocationSelect={handleLocationSelect} />
                 {formData.lat !== 0 && (
                   <div className="mt-2 text-xs text-gray-400">
@@ -178,6 +179,7 @@ export default function Home() {
                 </div>
               )}
 
+              {/* submit button */}
               <button
                 type="submit"
                 disabled={loading || formData.lat === 0}

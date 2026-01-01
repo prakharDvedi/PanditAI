@@ -39,7 +39,7 @@ export default function TimelineViewer({ timeline }: TimelineProps) {
 
           return (
             <div key={idx} className="relative pl-8">
-              {/* Timeline Dot */}
+              {/* timeline dot */}
               <div
                 className={`absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full border-2 ${
                   isCurrent
@@ -48,7 +48,7 @@ export default function TimelineViewer({ timeline }: TimelineProps) {
                 }`}
               />
 
-              {/* Card */}
+              {/* card */}
               <div
                 className={`p-6 rounded-2xl border transition-all duration-300 cursor-pointer ${
                   isCurrent
@@ -76,7 +76,7 @@ export default function TimelineViewer({ timeline }: TimelineProps) {
                   </div>
                 )}
 
-                {/* Sub-periods (Antardasha) */}
+                {/* sub-periods (antardasha) */}
                 <div
                   className={`overflow-hidden transition-all duration-500 ${
                     expanded === `${idx}`

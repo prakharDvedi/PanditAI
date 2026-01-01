@@ -38,7 +38,7 @@ export default function YogaList({ yogas }: YogaListProps) {
                 isExpanded ? "bg-[#202025] scale-[1.02]" : "hover:bg-[#202025]"
               }`}
             >
-              {/* Glow Effect */}
+              {/* glow effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
 
               <div className="relative z-10">
@@ -74,7 +74,7 @@ export default function YogaList({ yogas }: YogaListProps) {
                   </div>
                 )}
 
-                {/* Dropdown Toggle */}
+                {/* dropdown toggle */}
                 <button
                   onClick={() => setExpandedIndex(isExpanded ? null : idx)}
                   className="flex items-center gap-2 text-xs text-amber-200/70 hover:text-amber-200 transition-colors uppercase tracking-widest font-bold mt-2"
@@ -90,7 +90,7 @@ export default function YogaList({ yogas }: YogaListProps) {
                   )}
                 </button>
 
-                {/* Expandable Content */}
+                {/* expandable content */}
                 <div
                   className={`grid transition-all duration-300 ease-in-out ${
                     isExpanded

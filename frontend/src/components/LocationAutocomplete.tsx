@@ -26,7 +26,7 @@ export default function LocationAutocomplete({
   const [isLoading, setIsLoading] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside
+  // close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -40,7 +40,7 @@ export default function LocationAutocomplete({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Fetch suggestions from Nominatim
+  // fetch suggestions from nominatim
   useEffect(() => {
     if (query.length < 3) {
       setSuggestions([]);
@@ -68,7 +68,7 @@ export default function LocationAutocomplete({
       } finally {
         setIsLoading(false);
       }
-    }, 500); // Debounce: wait 500ms after user stops typing
+    }, 500); // debounce: wait 500ms after user stops typing
 
     return () => clearTimeout(timeoutId);
   }, [query]);

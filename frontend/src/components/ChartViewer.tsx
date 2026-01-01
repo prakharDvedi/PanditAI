@@ -7,7 +7,7 @@ export default function ChartViewer() {
   const [d9Image, setD9Image] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Helper function to fetch chart image
+  // helper function to fetch chart image
   const fetchChart = async (style: "d1" | "d9", details: any) => {
     try {
       const API_URL =
@@ -37,7 +37,7 @@ export default function ChartViewer() {
 
       const details = JSON.parse(storedDetails);
 
-      // Fetch both charts in parallel
+      // fetch both charts in parallel
       const [d1, d9] = await Promise.all([
         fetchChart("d1", details),
         fetchChart("d9", details),
@@ -54,14 +54,14 @@ export default function ChartViewer() {
   if (loading) {
     return (
       <div className="h-96 flex items-center justify-center text-white/30 animate-pulse">
-        Generating Vedic Charts...
+        Generating your Vedic Charts...
       </div>
     );
   }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-reveal">
-      {/* D1 Chart Card */}
+      {/* d1 chart card */}
       <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center">
         <h3 className="text-xl font-serif text-amber-100 mb-4">
           Lagna Chart (D1)
@@ -83,7 +83,7 @@ export default function ChartViewer() {
         </p>
       </div>
 
-      {/* D9 Chart Card */}
+      {/* d9 chart card */}
       <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center">
         <h3 className="text-xl font-serif text-amber-100 mb-4">
           Navamsa Chart (D9)
