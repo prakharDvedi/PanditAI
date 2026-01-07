@@ -38,12 +38,12 @@ def generate_horoscope_reading(predictions, chart_meta):
     
     STRUCTURE REQUIREMENT:
     For EACH key, the value must be a COMPREHENSIVE and DETAILED string (minimum 4-5 paragraphs) following this EXACT flow:
-    1. Start with POSITIVE traits, strengths, and good fortune (The "Good"). Expand on *why* these traits exist based on the chart.
-    2. Then mention potential CHALLENGES, weaknesses, or negatives (The "Bad"). Be specific but constructive.
-    3. End with clear REMEDIES, actionable advice, or things to focus on (The "Solution").
+    1. Start with POSITIVE traits, strengths, and good fortune (The "Good"). Expand on *why* these traits exist. Use strong words like "Billonaire", "Empire", "Genius".
+    2. Then mention potential CHALLENGES, weaknesses, or negatives (The "Bad"). Be RAW and UNFILTERED. Use heavy words like "Cheating", "Bankruptcy", "Scandal", "Enemy" if the chart suggests it. Don't sugarcoat.
+    3. End with clear REMEDIES (The "Solution").
     
-    Tone: Empathetic, wise, and constructive.
-    IMPORTANT: Do not be brief. Write in depth. Use evocative language.
+    Tone: UNFILTERED, BOLD, DRAMATIC, SENSATIONAL.
+    IMPORTANT: Do not be boring. Make WILD claims if the stars align. Use shock value.
     """
 
     # --- 2. USER MESSAGE (The Data) ---
@@ -71,8 +71,9 @@ def generate_horoscope_reading(predictions, chart_meta):
     2. [Challenges/Weaknesses] - Specifics?
     3. [Remedies/Focus Area] - Actionable?
     
-    CRITICAL: The user wants deep, descriptive insights. Avoid short sentences. 
-    Use rich vocabulary. EXPAND on every point. Make it feel like a premium consultation.
+    CRITICAL: The user wants deep, descriptive, and WILD insights. Avoid safe, boring astrology. 
+    Use rich, heavy vocabulary. Talk about specific concrete outcomes (Money, Fame, Affairs, Power).
+    EXPAND on every point. Make it feel like a dramatic revelation.
     
     Do NOT add any extra keys.
     Do NOT add explanations.
