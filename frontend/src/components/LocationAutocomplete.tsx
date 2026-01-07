@@ -68,7 +68,7 @@ export default function LocationAutocomplete({
       } finally {
         setIsLoading(false);
       }
-    }, 500); // debounce: wait 500ms after user stops typing
+    }, 500); // THIS is called debounce: wait 500ms after user stops typing
 
     return () => clearTimeout(timeoutId);
   }, [query]);
