@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { Send, Sparkles, User, Stars } from "lucide-react";
 
 interface Message {
   role: "user" | "assistant";
@@ -16,15 +17,20 @@ export default function AstrologerChat({ context }: ChatProps) {
     {
       role: "assistant",
       content:
-        "Namaste. I have analyzed your chart. Ask me anything about your career, relationships, destiny and how to make it better.",
+        "Namaste. I have analyzed your chart. Ask me anything about your career, relationships, destiny, and how to make your life better",
     },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        top: scrollRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
   }, [messages]);
 
   const sendMessage = async () => {
@@ -57,7 +63,7 @@ export default function AstrologerChat({ context }: ChatProps) {
         {
           role: "assistant",
           content:
-            "I am having trouble connecting to the cosmos right now. Please try again.",
+            "The cosmic connection is faint right now. Please try again in a moment.",
         },
       ]);
     } finally {
@@ -66,66 +72,106 @@ export default function AstrologerChat({ context }: ChatProps) {
   };
 
   return (
-    <div className="max-w-4xl mx-auto h-[600px] flex flex-col rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-md overflow-hidden">
+    <div className="max-w-2xl mx-auto h-[550px] flex flex-col rounded-3xl border border-white/10 bg-[#0a0514]/50 backdrop-blur-3xl shadow-2xl overflow-hidden relative group">
+      {/* Background Glow */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-violet-600/10 rounded-full blur-[80px] pointer-events-none" />
+
       {/* Header */}
-      <div className="p-4 border-b border-white/5 bg-white/5 flex items-center gap-3">
-        <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
-        <span className="font-serif text-amber-100 tracking-wide">
-          PanditAI Interaction Mode
-        </span>
+      <div className="p-4 border-b border-white/5 bg-white/5 flex items-center justify-between backdrop-blur-md z-10">
+        <div className="flex items-center gap-3">
+          <div className="p-2 rounded-xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+            <Stars className="w-4 h-4" />
+          </div>
+          <div>
+            <h3 className="text-sm font-medium text-white tracking-wide">
+              PanditAI
+            </h3>
+            <div className="flex items-center gap-1.5 opacity-60">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-[10px] uppercase tracking-widest text-white">
+                Online
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-6">
+      <div
+        ref={scrollRef}
+        className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent z-10"
+      >
         {messages.map((m, idx) => (
           <div
             key={idx}
-            className={`flex ${
+            className={`flex gap-3 ${
               m.role === "user" ? "justify-end" : "justify-start"
             }`}
           >
+            {/* AI Avatar */}
+            {m.role === "assistant" && (
+              <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 flex-shrink-0 mt-1">
+                <Sparkles className="w-4 h-4 text-indigo-300" />
+              </div>
+            )}
+
             <div
-              className={`max-w-[80%] p-4 rounded-2xl text-sm leading-relaxed ${
+              className={`max-w-[75%] p-4 rounded-2xl text-sm leading-relaxed shadow-lg backdrop-blur-sm ${
                 m.role === "user"
-                  ? "bg-amber-600/20 text-white rounded-br-none border border-amber-500/30"
-                  : "bg-white/10 text-white/90 rounded-bl-none border border-white/10"
+                  ? "bg-indigo-600/20 text-indigo-50 border border-indigo-500/30 rounded-tr-none"
+                  : "bg-white/5 text-white/80 border border-white/5 rounded-tl-none"
               }`}
             >
-              <span className="font-bold block mb-1 text-xs opacity-50 uppercase tracking-wider">
-                {m.role === "user" ? "You" : "PanditAI"}
-              </span>
               {m.content}
             </div>
+
+            {/* User Avatar */}
+            {m.role === "user" && (
+              <div className="w-8 h-8 rounded-full bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20 flex-shrink-0 mt-1">
+                <User className="w-4 h-4 text-indigo-300" />
+              </div>
+            )}
           </div>
         ))}
+
         {loading && (
-          <div className="flex justify-start">
-            <div className="bg-white/5 p-4 rounded-2xl rounded-bl-none text-white/50 text-sm animate-pulse">
-              Consulting the stars...
+          <div className="flex gap-3">
+            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 flex-shrink-0">
+              <Sparkles className="w-4 h-4 text-indigo-300 animate-spin-slow" />
+            </div>
+            <div className="bg-white/5 px-4 py-3 rounded-2xl rounded-tl-none text-white/40 text-xs flex items-center gap-2">
+              <span className="animate-bounce">●</span>
+              <span className="animate-bounce delay-100">●</span>
+              <span className="animate-bounce delay-200">●</span>
             </div>
           </div>
         )}
-        <div ref={bottomRef} />
       </div>
 
       {/* Input Area */}
-      <div className="p-4 border-t border-white/5 bg-white/[0.02]">
-        <div className="flex gap-4">
+      <div className="p-4 border-t border-white/5 bg-white/[0.02] z-10 backdrop-blur-md">
+        <div className="relative flex items-center gap-2">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-            placeholder="Ask about your Dasha, compatibility, or career..."
-            className="flex-1 bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/20 focus:outline-none focus:border-amber-200/50 transition-colors"
+            placeholder="Ask the stars..."
+            className="w-full bg-black/20 border border-white/10 rounded-xl pl-4 pr-12 py-3.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/20 transition-all shadow-inner"
           />
           <button
             onClick={sendMessage}
-            disabled={loading}
-            className="px-6 py-3 bg-amber-600/20 hover:bg-amber-600/40 text-amber-200 rounded-xl border border-amber-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={loading || !input.trim()}
+            className="absolute right-2 p-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg transition-all disabled:opacity-0 disabled:scale-75 shadow-lg shadow-indigo-500/20"
           >
-            Send ➢
+            <Send className="w-4 h-4" />
           </button>
+        </div>
+        <div className="text-center mt-2">
+          <p className="text-[10px] text-white/20 uppercase tracking-widest">
+            AI can make mistakes. Astrology cannot
+          </p>
         </div>
       </div>
     </div>

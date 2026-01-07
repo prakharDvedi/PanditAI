@@ -238,7 +238,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
             >
               <span className="text-rose-200/80 text-xs font-medium tracking-widest uppercase group-hover:text-rose-200 transition-colors">
-                New: Love Compatibility Check
+                Love Compatibility Check
               </span>
               <span className="text-rose-200/80 group-hover:translate-x-1 transition-transform group-hover:text-rose-200">
                 →

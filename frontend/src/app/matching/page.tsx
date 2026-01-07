@@ -130,8 +130,8 @@ export default function MatchingPage() {
       <main className="max-w-6xl mx-auto p-6 md:p-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {/* Person 1 Input */}
-          <section className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl relative group overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+          <section className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl relative group">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl" />
 
             <h2 className="text-xs font-bold uppercase tracking-widest text-amber-500/80 mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-amber-500"></span>
@@ -189,8 +189,8 @@ export default function MatchingPage() {
           </section>
 
           {/* Person 2 Input */}
-          <section className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl relative group overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+          <section className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl relative group">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl" />
 
             <h2 className="text-xs font-bold uppercase tracking-widest text-purple-400/80 mb-6 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-purple-400"></span>

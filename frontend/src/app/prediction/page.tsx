@@ -9,6 +9,11 @@ import {
   Briefcase,
   Heart,
   Sparkles,
+  LayoutDashboard,
+  Compass,
+  Hourglass,
+  Crown,
+  MessageCircle,
 } from "lucide-react";
 import ChartViewer from "@/components/ChartViewer";
 import TimelineViewer from "@/components/TimelineViewer";
@@ -43,11 +48,11 @@ export default function PredictionPage() {
 
   // tabs configuration
   const tabs = [
-    { id: "analysis", label: "📏 Analysis" },
-    { id: "charts", label: "🗺️ Charts" },
-    { id: "timeline", label: "⏳ Timeline" },
-    { id: "yogas", label: "🧘 Yogas" },
-    { id: "chat", label: "💬 Chat" },
+    { id: "analysis", label: "Analysis", icon: LayoutDashboard },
+    { id: "charts", label: "Charts", icon: Compass },
+    { id: "timeline", label: "Timeline", icon: Hourglass },
+    { id: "yogas", label: "Yogas", icon: Crown },
+    { id: "chat", label: "Chat", icon: MessageCircle },
   ];
 
   return (
@@ -130,12 +135,13 @@ export default function PredictionPage() {
               onClick={() => {
                 setActiveTab(tab.id);
               }}
-              className={`relative px-1 py-2 text-sm tracking-widest uppercase transition-all duration-300 ${
+              className={`relative px-1 py-2 text-sm tracking-widest uppercase transition-all duration-300 flex items-center gap-2 ${
                 activeTab === tab.id
                   ? "text-amber-200"
                   : "text-white/40 hover:text-white/70"
               }`}
             >
+              <tab.icon className="w-4 h-4 mb-0.5" />
               {tab.label}
               {activeTab === tab.id && (
                 <div className="absolute bottom-0 left-0 w-full h-px bg-amber-200 shadow-[0_0_10px_#fcd34d]" />
@@ -161,7 +167,7 @@ export default function PredictionPage() {
                   <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
                   Key Cosmic Focus
                 </div>
-                <p className="text-2xl md:text-3xl font-light text-white/90 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-2xl md:text-3xl font-light text-white/90 max-w-4xl mx-auto leading-relaxed">
                   {data?.ai_reading?.meta?.insight ? (
                     <span>"{data.ai_reading.meta.insight}"</span>
                   ) : (
