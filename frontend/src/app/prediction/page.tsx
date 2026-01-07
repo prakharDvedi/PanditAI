@@ -15,13 +15,13 @@ type CategoryKey =
   | "love"
   | "miscellaneous";
 
-const categories: { key: CategoryKey; title: string; icon: string }[] = [
-  { key: "personality", title: "Personality", icon: "🧑‍🦱👧" },
-  { key: "health", title: "Health", icon: "❤️‍🩹" },
-  { key: "money", title: "Money", icon: "🤑🫰" },
-  { key: "career", title: "Career", icon: "🏢💼" },
-  { key: "love", title: "Love", icon: "🥰💌" },
-  { key: "miscellaneous", title: "Miscellaneous", icon: "🥀" },
+const categories: { key: CategoryKey; title: string; image: string }[] = [
+  { key: "personality", title: "Personality", image: "/personality-bg.png" },
+  { key: "health", title: "Health", image: "/health.png" },
+  { key: "money", title: "Money", image: "/money.png" },
+  { key: "career", title: "Career", image: "/career.png" },
+  { key: "love", title: "Love", image: "/love.png" },
+  { key: "miscellaneous", title: "Miscellaneous", image: "/misc.png" },
 ];
 
 export default function PredictionPage() {
@@ -154,18 +154,14 @@ export default function PredictionPage() {
                   >
                     <div className="absolute inset-0 bg-amber-200/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                     <div className="relative h-48 p-6 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm flex flex-col justify-between transition-all duration-500 group-hover:border-amber-200/20 group-hover:-translate-y-1 overflow-hidden">
-                      {cat.key === "personality" && (
-                        <div className="absolute inset-0 bg-[url('/personality-bg.png')] bg-cover bg-center opacity-50 blur-sm scale-110 pointer-events-none transition-transform duration-700 group-hover:scale-125" />
-                      )}
-
-                      <div className="relative z-10">
-                        <span className="text-2xl font-light text-amber-100/40 group-hover:text-amber-100/80 transition-colors duration-500 block mb-auto">
-                          {cat.icon}
-                        </span>
-                      </div>
+                      {/* background image */}
+                      <div
+                        className="absolute inset-0 bg-cover bg-center opacity-50 blur-[2px] scale-110 pointer-events-none transition-transform duration-700 group-hover:scale-125"
+                        style={{ backgroundImage: `url('${cat.image}')` }}
+                      />
 
                       <div className="relative z-10 mt-auto">
-                        <h3 className="text-sm tracking-widest uppercase text-white/50 group-hover:text-amber-200 transition-colors duration-500">
+                        <h3 className="text-sm tracking-widest uppercase text-white/50 group-hover:text-amber-200 transition-colors duration-500 font-semibold shadow-black drop-shadow-md">
                           {cat.title}
                         </h3>
                       </div>

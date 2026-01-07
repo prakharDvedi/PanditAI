@@ -13,13 +13,13 @@ type CategoryKey =
   | "love"
   | "miscellaneous";
 
-const categoryMeta: Record<CategoryKey, { title: string; icon: string }> = {
-  personality: { title: "Personality", icon: "🧑‍🦱👧" },
-  health: { title: "Health", icon: "❤️‍🩹" },
-  money: { title: "Money", icon: "🤑🫰" },
-  career: { title: "Career", icon: "🏢💼" },
-  love: { title: "Love", icon: "🥰💌" },
-  miscellaneous: { title: "Miscellaneous", icon: "🥀" },
+const categoryMeta: Record<CategoryKey, { title: string; image: string }> = {
+  personality: { title: "Personality", image: "/personality-bg.png" },
+  health: { title: "Health", image: "/health.png" },
+  money: { title: "Money", image: "/money.png" },
+  career: { title: "Career", image: "/career.png" },
+  love: { title: "Love", image: "/love.png" },
+  miscellaneous: { title: "Miscellaneous", image: "/misc.png" },
 };
 
 export default function AnalysisCategoryPage() {
@@ -66,7 +66,14 @@ export default function AnalysisCategoryPage() {
 
       {/* header */}
       <header className="relative z-20 pt-8 px-8 pb-4 border-b border-white/5 bg-black/20 backdrop-blur-md">
-        <div className="max-w-4xl mx-auto flex items-center gap-4">
+        {/* header background image (subtle) */}
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-20 blur-sm pointer-events-none"
+          style={{ backgroundImage: `url('${meta.image}')` }}
+        />
+        <div className="absolute inset-0 bg-black/60 pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto flex items-center gap-4 relative z-10">
           <Link
             href="/prediction"
             className="p-2 rounded-full hover:bg-white/5 text-white/40 hover:text-white transition-colors"
@@ -75,7 +82,6 @@ export default function AnalysisCategoryPage() {
           </Link>
           <div className="flex-1">
             <h1 className="text-sm tracking-widest uppercase text-amber-100/90 flex items-center gap-3">
-              <span className="text-xl">{meta.icon}</span>
               {meta.title} Analysis
             </h1>
           </div>
