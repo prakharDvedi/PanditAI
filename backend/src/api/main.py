@@ -25,8 +25,6 @@ app = FastAPI(title="PanditAI: Neuro-Symbolic Engine")
 
 # --- RATE LIMITING MIDDLEWARE ---
 
-# Simple in-memory rate limiter: IP -> last_request_time
-# Limit: 1 request per second
 RATE_LIMIT_DELAY = 1.0
 _ip_timestamps = defaultdict(float)
 
@@ -38,7 +36,6 @@ async def rate_limit_middleware(request: Request, call_next):
     last_time = _ip_timestamps[client_ip]
 
     if now - last_time < RATE_LIMIT_DELAY:
-        # Check if it's an OPTIONS request (CORS preflight), let it pass
         if request.method == "OPTIONS":
             return await call_next(request)
 
