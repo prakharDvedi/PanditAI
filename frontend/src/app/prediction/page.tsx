@@ -2,6 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import {
+  User,
+  Activity,
+  Wallet,
+  Briefcase,
+  Heart,
+  Sparkles,
+} from "lucide-react";
 import ChartViewer from "@/components/ChartViewer";
 import TimelineViewer from "@/components/TimelineViewer";
 import YogaList from "@/components/YogaList";
@@ -14,15 +22,6 @@ type CategoryKey =
   | "career"
   | "love"
   | "miscellaneous";
-
-const categories: { key: CategoryKey; title: string; image: string }[] = [
-  { key: "personality", title: "Personality", image: "/personality-bg.webp" },
-  { key: "health", title: "Health", image: "/health.webp" },
-  { key: "money", title: "Money", image: "/money.webp" },
-  { key: "career", title: "Career", image: "/career.webp" },
-  { key: "love", title: "Love", image: "/love.webp" },
-  { key: "miscellaneous", title: "Miscellaneous", image: "/misc.webp" },
-];
 
 export default function PredictionPage() {
   const [data, setData] = useState<any>(null);
@@ -152,33 +151,120 @@ export default function PredictionPage() {
           {/* tab: analysis */}
           {activeTab === "analysis" && (
             <div
-              className={`transition-all duration-700 ${
+              className={`transition-all duration-700 space-y-12 ${
                 isLoaded ? "opacity-100" : "opacity-0"
               }`}
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {categories.map((cat) => (
-                  <Link
-                    key={cat.key}
-                    href={`/prediction/${cat.key}`}
-                    className="group relative text-left outline-none block"
-                  >
-                    <div className="absolute inset-0 bg-amber-200/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    <div className="relative h-48 p-6 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm flex flex-col justify-between transition-all duration-500 group-hover:border-amber-200/20 group-hover:-translate-y-1 overflow-hidden">
-                      {/* background image */}
-                      <div
-                        className="absolute inset-0 bg-cover bg-center opacity-50 blur-[2px] scale-110 pointer-events-none transition-transform duration-700 group-hover:scale-125"
-                        style={{ backgroundImage: `url('${cat.image}')` }}
-                      />
+              {/* 1. One-Line Insight Header (Dynamic) */}
+              <div className="text-center space-y-4">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-400/20 text-indigo-300 text-xs tracking-widest uppercase font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+                  Key Cosmic Focus
+                </div>
+                <p className="text-2xl md:text-3xl font-light text-white/90 max-w-2xl mx-auto leading-relaxed">
+                  {data?.ai_reading?.meta?.insight ? (
+                    <span>"{data.ai_reading.meta.insight}"</span>
+                  ) : (
+                    <span>
+                      "Your{" "}
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 to-indigo-300 font-normal">
+                        Cosmic Energy
+                      </span>{" "}
+                      is shifting, bringing new opportunities for growth."
+                    </span>
+                  )}
+                </p>
+              </div>
 
-                      <div className="relative z-10 mt-auto">
-                        <h3 className="text-sm tracking-widest uppercase text-white/50 group-hover:text-amber-200 transition-colors duration-500 font-semibold shadow-black drop-shadow-md">
-                          {cat.title}
-                        </h3>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+              {/* 2. Symbolic Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {(() => {
+                  const dominantKey =
+                    data?.ai_reading?.meta?.dominant_category?.toLowerCase() ||
+                    "career";
+
+                  return [
+                    {
+                      key: "personality",
+                      title: "Personality",
+                      icon: <User className="w-6 h-6" />,
+                      desc: "Inner Self & Ego",
+                    },
+                    {
+                      key: "health",
+                      title: "Health",
+                      icon: <Activity className="w-6 h-6" />,
+                      desc: "Vitality & Wellness",
+                    },
+                    {
+                      key: "money",
+                      title: "Money",
+                      icon: <Wallet className="w-6 h-6" />,
+                      desc: "Wealth & Assets",
+                    },
+                    {
+                      key: "career",
+                      title: "Career",
+                      icon: <Briefcase className="w-6 h-6" />,
+                      desc: "Purpose & Status",
+                    },
+                    {
+                      key: "love",
+                      title: "Love",
+                      icon: <Heart className="w-6 h-6" />,
+                      desc: "Relationships",
+                    },
+                    {
+                      key: "miscellaneous",
+                      title: "Miscellaneous",
+                      icon: <Sparkles className="w-6 h-6" />,
+                      desc: "Travel & Spirituality",
+                    },
+                  ].map((cat) => {
+                    const isDominant = cat.key === dominantKey;
+                    return (
+                      <Link
+                        key={cat.key}
+                        href={`/prediction/${cat.key}`}
+                        className={`group relative outline-none block p-[1px] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 ${
+                          isDominant ? "ring-2 ring-indigo-500/30" : ""
+                        }`}
+                      >
+                        {/* Subtle Gradient Border on Hover */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent group-hover:from-indigo-500/50 group-hover:to-violet-500/50 transition-all duration-500 opacity-50 group-hover:opacity-100" />
+
+                        <div className="relative h-40 p-6 rounded-2xl bg-[#030014]/90 backdrop-blur-xl flex flex-col justify-center items-center gap-4 transition-all duration-500">
+                          {/* Dominant Highlight Tag */}
+                          {isDominant && (
+                            <div className="absolute top-4 right-4 text-[10px] uppercase tracking-widest text-indigo-300 font-bold opacity-80">
+                              Dominant
+                            </div>
+                          )}
+
+                          {/* Symbolic Icon */}
+                          <div
+                            className={`p-3 rounded-full bg-white/5 text-white/60 group-hover:text-white group-hover:bg-indigo-500/20 transition-all duration-500 group-hover:scale-110 ${
+                              isDominant
+                                ? "bg-indigo-500/20 text-indigo-200"
+                                : ""
+                            }`}
+                          >
+                            {cat.icon}
+                          </div>
+
+                          <div className="text-center space-y-1">
+                            <h3 className="text-sm tracking-widest uppercase text-white/50 group-hover:text-white transition-colors duration-500 font-semibold">
+                              {cat.title}
+                            </h3>
+                            <p className="text-[10px] text-white/30 uppercase tracking-wider group-hover:text-white/50 transition-colors">
+                              {cat.desc}
+                            </p>
+                          </div>
+                        </div>
+                      </Link>
+                    );
+                  });
+                })()}
               </div>
             </div>
           )}

@@ -91,15 +91,18 @@ export default function Home() {
 
   return (
     <div className="min-h-screen w-full bg-[#030014] text-foreground flex flex-col relative overflow-hidden selection:bg-purple-500/30">
-      {/* 1. Multi-stop Dark Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0514] via-[#050505] to-[#020103] z-0" />
+      {/* 1. Multi-stop Dark Gradient Background (Drifting) */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#020617] to-[#0f172a] bg-[length:200%_200%] animate-drift z-0" />
 
-      {/* 2. Ambient Orbs */}
+      {/* 2. Ambient Orbs (Breathing) */}
       {/* Orb 1: Purple/Violet (Top Left) */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-pulse-slow z-0 pointer-events-none mix-blend-screen" />
+      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-breathe z-0 pointer-events-none mix-blend-screen" />
 
       {/* Orb 2: Amber/Orange (Bottom Right) */}
-      <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-amber-600/10 rounded-full blur-[150px] animate-pulse-slower z-0 pointer-events-none mix-blend-screen" />
+      <div
+        className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-amber-600/10 rounded-full blur-[150px] animate-breathe z-0 pointer-events-none mix-blend-screen"
+        style={{ animationDelay: "5s" }}
+      />
 
       {/* 3. Subtle Noise Overlay */}
       <div
@@ -119,8 +122,8 @@ export default function Home() {
 
         {/* right: form */}
         <div className="flex-1 w-full max-w-md">
-          {/* Glass Card */}
-          <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] p-8 ring-1 ring-white/5 relative overflow-hidden group">
+          {/* Glass Card with Shadow Pulse */}
+          <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl p-8 ring-1 ring-white/5 relative overflow-hidden group animate-shadow-glow">
             {/* Card shine effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
