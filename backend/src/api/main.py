@@ -383,7 +383,40 @@ def match_charts(r: MatchRequest):
         r.p2.timezone,
     )
     analysis = match_engine.calculate_compatibility(c1, c2)
-    prompt = f"Analyze compatibility. P1 Ascendant: {c1['Ascendant']['sign_id']}, P2 Ascendant: {c2['Ascendant']['sign_id']}. Analysis: {analysis}"
+
+    # Construct a detailed prompt for the AI
+    details = analysis.get("details", {})
+    prompt = f"""
+    You are an UNFILTERED, brutally honest Vedic Astrologer. Analyze this relationship compatibility (Ashta Koota):
+    
+    TOTAL SCORE: {analysis.get("score")} / 36
+    
+    DETAILED BREAKDOWN:
+    1. Varna (Work/Ego): {details.get("Varna")}/1
+    2. Vashya (Dominance/Control): {details.get("Vashya")}/2
+    3. Tara (Destiny/Luck): {details.get("Tara")}/3
+    4. Yoni (Intimacy/Nature): {details.get("Yoni")}/4
+    5. Maitri (Friendship/Mental): {details.get("Maitri")}/5
+    6. Gana (Temperament): {details.get("Gana")}/6
+    7. Bhakoot (Love/Emotional Flow): {details.get("Bhakoot")}/7
+    8. Nadi (Health/Genetics): {details.get("Nadi")}/8
+    
+    Manglik Status: {analysis.get("manglik", {}).get("match_status")}
+    
+    INSTRUCTIONS:
+    - Provide a bulleted list of RAW, SENSATIONAL insights.
+    - **CRITICAL**: DO NOT mention the numeric score (e.g. don't say "A score of 7/7 means..."). The user already sees the score. Just give the INTERPRETATION.
+    - Keep each point concise (1-2 sentences).
+    - Use heavy, dramatic words.
+    
+    FORMAT:
+    * **Varna**: [Concise, punchy insight]
+    * **Vashya**: [Concise, punchy insight]
+    ...
+    * **Final Verdict**: [Brutal Conclusion] [with hope and what needs to be done to save the relation]
+
+    """
+
     verdict = chat_with_astrologer(prompt, "Relationship Context")
     return {"analysis": analysis, "ai_verdict": verdict}
 

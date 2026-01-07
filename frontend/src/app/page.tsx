@@ -90,23 +90,52 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col relative overflow-hidden">
-      <main className="flex-1 flex flex-col lg:flex-row items-center justify-center p-6 lg:p-24 gap-12 z-10">
-        <h2 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight">
+    <div className="min-h-screen w-full bg-[#030014] text-foreground flex flex-col relative overflow-hidden selection:bg-purple-500/30">
+      {/* 1. Multi-stop Dark Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0514] via-[#050505] to-[#020103] z-0" />
+
+      {/* 2. Ambient Orbs */}
+      {/* Orb 1: Purple/Violet (Top Left) */}
+      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-pulse-slow z-0 pointer-events-none mix-blend-screen" />
+
+      {/* Orb 2: Amber/Orange (Bottom Right) */}
+      <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-amber-600/10 rounded-full blur-[150px] animate-pulse-slower z-0 pointer-events-none mix-blend-screen" />
+
+      {/* 3. Subtle Noise Overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.03] z-[1] pointer-events-none mix-blend-overlay"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      <main className="flex-1 flex flex-col lg:flex-row items-center justify-center p-6 lg:p-24 gap-12 z-10 relative">
+        <h2 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight drop-shadow-2xl">
           Welcome to <br />
-          <span className="text-amber-500">PanditAI</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-orange-400 to-rose-200 animate-gradient-x">
+            PanditAI
+          </span>
         </h2>
 
         {/* right: form */}
         <div className="flex-1 w-full max-w-md">
-          <div className="bg-white/5 backdrop-blur-xl border border-[#ff8c42]/20 rounded-lg shadow-2xl shadow-[#ff8c42]/10 p-8">
-            <div className="text-center mb-6">
-              <h3 className="text-2xl font-bold mb-2">Enter Birth Details</h3>
+          {/* Glass Card */}
+          <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] p-8 ring-1 ring-white/5 relative overflow-hidden group">
+            {/* Card shine effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+            <div className="text-center mb-6 relative z-10">
+              <h3 className="text-2xl font-bold mb-2 text-white/90">
+                Enter Birth Details
+              </h3>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
               <div>
-                <label htmlFor="dob" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="dob"
+                  className="block text-xs font-medium mb-1 text-white/60 uppercase tracking-wider"
+                >
                   Date of Birth
                 </label>
                 <input
@@ -117,7 +146,7 @@ export default function Home() {
                   onChange={(e) =>
                     setFormData({ ...formData, dob: e.target.value })
                   }
-                  className="w-full px-4 py-2 bg-white/5 border border-white/20 rounded-lg focus:border-[#ff8c42] focus:outline-none focus:ring-1 focus:ring-[#ff8c42]"
+                  className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 text-white placeholder-white/20 transition-all font-light"
                 />
               </div>
 
@@ -125,7 +154,7 @@ export default function Home() {
                 <div>
                   <label
                     htmlFor="time"
-                    className="block text-sm font-medium mb-2"
+                    className="block text-xs font-medium mb-1 text-white/60 uppercase tracking-wider"
                   >
                     Time
                   </label>
@@ -137,13 +166,13 @@ export default function Home() {
                     onChange={(e) =>
                       setFormData({ ...formData, time: e.target.value })
                     }
-                    className="w-full px-4 py-2 bg-white/5 border border-white/20 rounded-lg focus:border-[#ff8c42] focus:outline-none focus:ring-1 focus:ring-[#ff8c42]"
+                    className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 text-white transition-all font-light"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="ayanamsa"
-                    className="block text-sm font-medium mb-2"
+                    className="block text-xs font-medium mb-1 text-white/60 uppercase tracking-wider"
                   >
                     Ayanamsa
                   </label>
@@ -153,28 +182,31 @@ export default function Home() {
                     onChange={(e) =>
                       setFormData({ ...formData, ayanamsa: e.target.value })
                     }
-                    className="w-full px-4 py-2 bg-white/5 border border-white/20 rounded-lg focus:border-[#ff8c42] focus:outline-none focus:ring-1 focus:ring-[#ff8c42]"
+                    className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 text-white transition-all font-light appearance-none"
                   >
-                    <option value="lahiri">Lahiri</option>
+                    <option value="lahiri" className="bg-[#1a0b2e]">
+                      Lahiri
+                    </option>
                   </select>
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">
+                <label className="block text-xs font-medium mb-1 text-white/60 uppercase tracking-wider">
                   Birth Location
                 </label>
                 {/* birth location input */}
                 <LocationAutocomplete onLocationSelect={handleLocationSelect} />
                 {formData.lat !== 0 && (
-                  <div className="mt-2 text-xs text-gray-400">
-                    📍 {formData.lat.toFixed(4)}°, {formData.lon.toFixed(4)}°
+                  <div className="mt-2 text-[10px] uppercase tracking-widest text-amber-500/80 font-medium">
+                    📍 {formData.city} ({formData.lat.toFixed(2)}°,{" "}
+                    {formData.lon.toFixed(2)}°)
                   </div>
                 )}
               </div>
 
               {error && (
-                <div className="p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-200 text-sm">
+                <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-200 text-sm">
                   {error}
                 </div>
               )}
@@ -183,20 +215,30 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={loading || formData.lat === 0}
-                className="w-full bg-gradient-to-r from-[#ff8c42] to-[#ff6b1a] hover:from-[#ff6b1a] hover:to-[#ff8c42] text-white font-bold py-4 text-lg rounded-lg mt-6 transition-all duration-500 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold py-4 text-lg rounded-xl mt-4 transition-all duration-300 shadow-lg shadow-amber-900/20 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98]"
               >
-                {loading ? "Generating..." : "Generate Horoscope"}
+                {loading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></span>
+                    Aligning Stars...
+                  </span>
+                ) : (
+                  "Reveal Your Destiny"
+                )}
               </button>
             </form>
           </div>
 
-          <div className="mt-6 text-center">
+          <div className="mt-8 text-center">
             <a
               href="/matching"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
             >
-              <span className="text-rose-200 text-sm font-medium tracking-wider uppercase">
-                Also Try Horoscope Matching with your crush
+              <span className="text-rose-200/80 text-xs font-medium tracking-widest uppercase group-hover:text-rose-200 transition-colors">
+                New: Love Compatibility Check
+              </span>
+              <span className="text-rose-200/80 group-hover:translate-x-1 transition-transform group-hover:text-rose-200">
+                →
               </span>
             </a>
           </div>
