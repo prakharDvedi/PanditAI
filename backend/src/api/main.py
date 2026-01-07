@@ -43,6 +43,53 @@ yoga_engine = YogaEngine()
 # 2. LOAD PREDICTION DATA
 # ==========================================
 PREDICTION_DB = {}
+
+
+# Helper to normalize keys from custom_rules (e.g. "Sun_H1_Aries" -> "SUN_ARI_H1")
+def normalize_custom_key(custom_id):
+    try:
+        parts = custom_id.split("_")  # Sun, H1, Aries
+        if len(parts) != 3:
+            return None
+
+        planet_map = {
+            "Sun": "SUN",
+            "Moon": "MOON",
+            "Mars": "MAR",
+            "Mercury": "MER",
+            "Jupiter": "JUP",
+            "Venus": "VEN",
+            "Saturn": "SAT",
+            "Rahu": "RAH",
+            "Ketu": "KET",
+        }
+        sign_map = {
+            "Aries": "ARI",
+            "Taurus": "TAU",
+            "Gemini": "GEM",
+            "Cancer": "CAN",
+            "Leo": "LEO",
+            "Virgo": "VIR",
+            "Libra": "LIB",
+            "Scorpio": "SCO",
+            "Sagittarius": "SAG",
+            "Capricorn": "CAP",
+            "Aquarius": "AQU",
+            "Pisces": "PIS",
+        }
+
+        p = planet_map.get(parts[0])
+        h = parts[1]  # H1
+        s = sign_map.get(parts[2])
+
+        if p and s:
+            return f"{p}_{s}_{h}"
+        return None
+    except:
+        return None
+
+
+# 1. Load default data first
 p_path = os.path.join("data", "planets_data.json")
 if os.path.exists(p_path):
     with open(p_path, "r", encoding="utf-8") as f:
@@ -54,6 +101,37 @@ if os.path.exists(l_path):
     with open(l_path, "r", encoding="utf-8") as f:
         for item in json.load(f):
             PREDICTION_DB[item["id"]] = item
+
+# 2. Override with Custom Rules (Lenient)
+c_path = os.path.join("data", "custom_rules.json")
+if os.path.exists(c_path):
+    print(f"  Loading Custom Rules from {c_path}...")
+    with open(c_path, "r", encoding="utf-8") as f:
+        custom_data = json.load(f)
+        count = 0
+        for item in custom_data:
+            # item has "results": { "general": "...", "positive": "...", "negative": "..." }
+            # We need to flatten this to "prediction" key for compatibility
+
+            # 1. Construct backward-compatible prediction text
+            prediction_text = item["results"]["general"]
+            if item["results"]["positive"]:
+                prediction_text += " " + item["results"]["positive"]
+            # Only add negative if it's not too harsh? User wants leniency.
+            # But let's include it for completeness, maybe the text itself is softer now.
+            if item["results"]["negative"]:
+                prediction_text += " Challenge: " + item["results"]["negative"]
+
+            new_item = item.copy()
+            new_item["prediction"] = prediction_text
+
+            # 2. Map ID
+            new_id = normalize_custom_key(item["id"])
+            if new_id:
+                new_item["id"] = new_id
+                PREDICTION_DB[new_id] = new_item  # OVERRIDE
+                count += 1
+        print(f"  Overridden {count} rules with Custom/Lenient versions.")
 
 
 # ==========================================
@@ -181,11 +259,12 @@ def predict_horoscope(d: BirthDetails):
                 data["house_number"] = (data["sign_id"] - asc_id) % 12 + 1
 
         # C. DL Score
-        score = 50
         try:
-            score = int(destiny_model(get_dl_vector(chart)).item() * 100)
+            raw_score = int(destiny_model(get_dl_vector(chart)).item() * 100)
+
+            score = min(int(raw_score * 1.2) + 15, 98)
         except:
-            pass
+            score = 75
 
         # D. Get Rules
         rules, fact_sheet = get_rules_for_chart(chart, asc_id)

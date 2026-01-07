@@ -36,7 +36,13 @@ def generate_horoscope_reading(predictions, chart_meta):
     - love
     - miscellaneous
     
-    Each value must be a detailed, insightful string (2-3 paragraphs) based on Vedic astrology principles.
+    STRUCTURE REQUIREMENT:
+    For EACH key, the value must be a detailed string following this EXACT flow:
+    1. Start with POSITIVE traits, strengths, and good fortune (The "Good").
+    2. Then mention potential CHALLENGES, weaknesses, or negatives (The "Bad").
+    3. End with clear REMEDIES, actionable advice, or things to focus on (The "Solution").
+    
+    Tone: Empathetic, wise, and constructive.
     """
 
     # --- 2. USER MESSAGE (The Data) ---
@@ -46,7 +52,7 @@ def generate_horoscope_reading(predictions, chart_meta):
     CHART DATA:
     {fact_context}
     
-    REFERENCE RULES:
+    REFERENCE RULES (Use these as a base, but synthesize them):
     {rules_text}
     
     Return astrology prediction in STRICT JSON format.
@@ -59,7 +65,11 @@ def generate_horoscope_reading(predictions, chart_meta):
     love
     miscellaneous
     
-    Each value must be a string (2-3 detailed paragraphs).
+    Each value string MUST follow the structure: 
+    1. [Positives/Strengths]
+    2. [Challenges/Weaknesses]
+    3. [Remedies/Focus Area]
+    
     Do NOT add any extra keys.
     Do NOT add explanations.
     Do NOT add markdown.
