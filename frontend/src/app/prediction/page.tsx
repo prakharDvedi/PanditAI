@@ -153,11 +153,18 @@ export default function PredictionPage() {
                     className="group relative text-left outline-none block"
                   >
                     <div className="absolute inset-0 bg-amber-200/5 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    <div className="relative h-48 p-6 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm flex flex-col justify-between transition-all duration-500 group-hover:border-amber-200/20 group-hover:-translate-y-1">
-                      <span className="text-2xl font-light text-amber-100/40 group-hover:text-amber-100/80 transition-colors duration-500">
-                        {cat.icon}
-                      </span>
-                      <div>
+                    <div className="relative h-48 p-6 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm flex flex-col justify-between transition-all duration-500 group-hover:border-amber-200/20 group-hover:-translate-y-1 overflow-hidden">
+                      {cat.key === "personality" && (
+                        <div className="absolute inset-0 bg-[url('/personality-bg.png')] bg-cover bg-center opacity-50 blur-sm scale-110 pointer-events-none transition-transform duration-700 group-hover:scale-125" />
+                      )}
+
+                      <div className="relative z-10">
+                        <span className="text-2xl font-light text-amber-100/40 group-hover:text-amber-100/80 transition-colors duration-500 block mb-auto">
+                          {cat.icon}
+                        </span>
+                      </div>
+
+                      <div className="relative z-10 mt-auto">
                         <h3 className="text-sm tracking-widest uppercase text-white/50 group-hover:text-amber-200 transition-colors duration-500">
                           {cat.title}
                         </h3>
