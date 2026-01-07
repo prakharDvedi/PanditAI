@@ -73,11 +73,11 @@ export default function AstrologerChat({ context }: ChatProps) {
 
   return (
     <div className="max-w-2xl mx-auto h-[550px] flex flex-col rounded-3xl border border-white/10 bg-[#0a0514]/50 backdrop-blur-3xl shadow-2xl overflow-hidden relative group">
-      {/* Background Glow */}
+      {/* background glow */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-[80px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-violet-600/10 rounded-full blur-[80px] pointer-events-none" />
 
-      {/* Header */}
+      {/* header */}
       <div className="p-4 border-b border-white/5 bg-white/5 flex items-center justify-between backdrop-blur-md z-10">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
@@ -97,7 +97,7 @@ export default function AstrologerChat({ context }: ChatProps) {
         </div>
       </div>
 
-      {/* Messages Area */}
+      {/* messages area */}
       <div
         ref={scrollRef}
         className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent z-10"
@@ -109,7 +109,7 @@ export default function AstrologerChat({ context }: ChatProps) {
               m.role === "user" ? "justify-end" : "justify-start"
             }`}
           >
-            {/* AI Avatar */}
+            {/* ai avatar */}
             {m.role === "assistant" && (
               <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 flex-shrink-0 mt-1">
                 <Sparkles className="w-4 h-4 text-indigo-300" />
@@ -126,7 +126,7 @@ export default function AstrologerChat({ context }: ChatProps) {
               {m.content}
             </div>
 
-            {/* User Avatar */}
+            {/* user avatar */}
             {m.role === "user" && (
               <div className="w-8 h-8 rounded-full bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20 flex-shrink-0 mt-1">
                 <User className="w-4 h-4 text-indigo-300" />
@@ -149,7 +149,7 @@ export default function AstrologerChat({ context }: ChatProps) {
         )}
       </div>
 
-      {/* Input Area */}
+      {/* input area */}
       <div className="p-4 border-t border-white/5 bg-white/[0.02] z-10 backdrop-blur-md">
         <div className="relative flex items-center gap-2">
           <input

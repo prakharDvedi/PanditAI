@@ -3,7 +3,6 @@
 import { useState } from "react";
 import LocationAutocomplete from "@/components/LocationAutocomplete";
 
-// default data of me
 export default function Home() {
   const [formData, setFormData] = useState({
     dob: "2005-08-20",
@@ -43,11 +42,11 @@ export default function Home() {
 
       const payload = {
         year: date.getFullYear(),
-        month: date.getMonth() + 1, // JavaScript months are 0-indexed
+        month: date.getMonth() + 1, // months are 0-indexed
         day: date.getDate(),
         hour: hours,
         minute: minutes,
-        timezone: 5.5, // Default to IST (India Standard Time)
+        timezone: 5.5, // default to ist
         latitude: formData.lat,
         longitude: formData.lon,
         ayanamsa: formData.ayanamsa.toUpperCase(),
@@ -55,7 +54,7 @@ export default function Home() {
 
       console.log("Sending to backend:", payload);
 
-      // call backend api
+      // fetch predictions
       const API_URL =
         process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
       const response = await fetch(`${API_URL}/calculate`, {
@@ -73,7 +72,7 @@ export default function Home() {
       const data = await response.json();
       console.log("Backend response:", data);
 
-      // store full prediction data
+      // cache data
       if (data) {
         localStorage.setItem("prediction", JSON.stringify(data));
         localStorage.setItem("birth_details", JSON.stringify(payload));
@@ -91,11 +90,10 @@ export default function Home() {
 
   return (
     <div className="min-h-screen w-full bg-[#030014] text-foreground flex flex-col relative overflow-hidden selection:bg-purple-500/30">
-      {/* 1. Multi-stop Dark Gradient Background (Drifting) */}
+      {/* background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#020617] to-[#0f172a] bg-[length:200%_200%] animate-drift z-0" />
 
-      {/* 2. Ambient Orbs (Breathing) */}
-      {/* Orb 1: Purple/Violet (Top Left) */}
+      {/* ambient orbs */}
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-breathe z-0 pointer-events-none mix-blend-screen" />
 
       {/* Orb 2: Amber/Orange (Bottom Right) */}
@@ -104,7 +102,7 @@ export default function Home() {
         style={{ animationDelay: "5s" }}
       />
 
-      {/* 3. Subtle Noise Overlay */}
+      {/* noise overlay */}
       <div
         className="absolute inset-0 opacity-[0.03] z-[1] pointer-events-none mix-blend-overlay"
         style={{
@@ -120,11 +118,8 @@ export default function Home() {
           </span>
         </h2>
 
-        {/* right: form */}
         <div className="flex-1 w-full max-w-md">
-          {/* Glass Card with Shadow Pulse */}
           <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl p-8 ring-1 ring-white/5 relative overflow-hidden group animate-shadow-glow">
-            {/* Card shine effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
             <div className="text-center mb-6 relative z-10">
@@ -198,7 +193,7 @@ export default function Home() {
                 <label className="block text-xs font-medium mb-1 text-white/60 uppercase tracking-wider">
                   Birth Location
                 </label>
-                {/* birth location input */}
+
                 <LocationAutocomplete onLocationSelect={handleLocationSelect} />
                 {formData.lat !== 0 && (
                   <div className="mt-2 text-[10px] uppercase tracking-widest text-amber-500/80 font-medium">
@@ -214,7 +209,6 @@ export default function Home() {
                 </div>
               )}
 
-              {/* submit button */}
               <button
                 type="submit"
                 disabled={loading || formData.lat === 0}

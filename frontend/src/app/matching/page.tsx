@@ -97,14 +97,14 @@ export default function MatchingPage() {
 
   return (
     <div className="min-h-screen w-full bg-[#030014] text-foreground flex flex-col relative overflow-hidden selection:bg-purple-500/30">
-      {/* 1. Multi-stop Dark Gradient Background */}
+      {/* background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0a0514] via-[#050505] to-[#020103] z-0" />
 
-      {/* 2. Ambient Orbs */}
+      {/* ambient orbs */}
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-pulse-slow z-0 pointer-events-none mix-blend-screen" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-amber-600/10 rounded-full blur-[150px] animate-pulse-slower z-0 pointer-events-none mix-blend-screen" />
 
-      {/* 3. Subtle Noise Overlay */}
+      {/* noise overlay */}
       <div
         className="absolute inset-0 opacity-[0.03] z-[1] pointer-events-none mix-blend-overlay"
         style={{
@@ -129,7 +129,6 @@ export default function MatchingPage() {
 
       <main className="max-w-6xl mx-auto p-6 md:p-12 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {/* Person 1 Input */}
           <section className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl relative group">
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl" />
 
@@ -188,7 +187,6 @@ export default function MatchingPage() {
             </div>
           </section>
 
-          {/* Person 2 Input */}
           <section className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl relative group">
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl" />
 
@@ -266,7 +264,6 @@ export default function MatchingPage() {
         </div>
 
         {result && (
-          // result display section
           <div className="mt-16 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-[0_0_50px_-12px_rgba(255,165,0,0.1)] animate-in fade-in slide-in-from-bottom-8 duration-700">
             <div className="flex flex-col md:flex-row items-start gap-10 mb-10">
               <div className="relative shrink-0">
@@ -291,7 +288,7 @@ export default function MatchingPage() {
                   {result.ai_verdict
                     .split("\n")
                     .map((line: string, i: number) => {
-                      // Check for list items with bold keys: * **Key**: Value
+                      // parse bold keys
                       const match = line.match(/^\*\s*\*\*(.*?)\*\*:\s*(.*)/);
                       if (match) {
                         const [_, key, value] = match;
@@ -322,7 +319,7 @@ export default function MatchingPage() {
                           </div>
                         );
                       }
-                      // Handle regular lines or empty lines
+                      // handle regular lines
                       if (!line.trim()) return <br key={i} />;
                       return <div key={i}>{line}</div>;
                     })}

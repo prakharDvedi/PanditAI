@@ -46,7 +46,7 @@ export default function PredictionPage() {
     setIsLoaded(true);
   }, []);
 
-  // tabs configuration
+  // tabs config
   const tabs = [
     { id: "analysis", label: "Analysis", icon: LayoutDashboard },
     { id: "charts", label: "Charts", icon: Compass },
@@ -57,14 +57,14 @@ export default function PredictionPage() {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-[#030014] text-[#f5f5f7] font-sans selection:bg-cyan-500/30 flex flex-col">
-      {/* 1. Multi-stop Dark Gradient Background */}
+      {/* background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0a0514] via-[#050505] to-[#020103] z-0" />
 
-      {/* 2. Ambient Orbs - Variant Colors (Violet & Cyan) */}
+      {/* ambient orbs */}
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[120px] animate-pulse-slow z-0 pointer-events-none mix-blend-screen" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] animate-pulse-slower z-0 pointer-events-none mix-blend-screen" />
 
-      {/* 3. Subtle Noise Overlay */}
+      {/* noise overlay */}
       <div
         className="absolute inset-0 opacity-[0.03] z-[1] pointer-events-none mix-blend-overlay"
         style={{
@@ -72,9 +72,7 @@ export default function PredictionPage() {
         }}
       />
 
-      {/* dashboard header */}
       <header className="relative z-20 pt-8 px-8 pb-4 border-b border-white/5 bg-black/20 backdrop-blur-md">
-        {/* top navigation bar */}
         <div className="max-w-7xl mx-auto flex justify-between items-center mb-6 text-xs uppercase tracking-widest text-white/40">
           <div className="flex gap-6">
             <Link href="/" className="hover:text-amber-200 transition-colors">
@@ -90,7 +88,6 @@ export default function PredictionPage() {
         </div>
 
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          {/* brand & title */}
           <div className="text-center md:text-left">
             <h1 className="text-xs tracking-[0.6em] uppercase text-white/40 mb-1">
               PanditAI
@@ -100,7 +97,7 @@ export default function PredictionPage() {
             </div>
           </div>
 
-          {/* destiny score (placeholder if data missing) */}
+          {/* destiny score */}
           <div className="group relative flex items-center gap-4 bg-white/5 rounded-full px-6 py-2 border border-white/10 cursor-help">
             <div className="text-right">
               <div className="text-[10px] uppercase tracking-widest text-white/50">
@@ -114,7 +111,6 @@ export default function PredictionPage() {
               <span className="text-lg">🌟</span>
             </div>
 
-            {/* tooltip */}
             <div className="absolute top-full mt-2 right-0 w-64 p-4 bg-zinc-900 border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 text-xs text-zinc-300 leading-relaxed translate-y-2 group-hover:translate-y-0">
               <p>
                 <strong className="text-amber-200 block mb-1">
@@ -127,7 +123,6 @@ export default function PredictionPage() {
           </div>
         </div>
 
-        {/* navigation tabs */}
         <div className="max-w-7xl mx-auto mt-8 flex gap-8 overflow-x-auto pb-2 scrollbar-hide">
           {tabs.map((tab) => (
             <button
@@ -151,7 +146,6 @@ export default function PredictionPage() {
         </div>
       </header>
 
-      {/* main content area */}
       <main className="relative z-10 flex-1 overflow-y-auto p-4 md:p-8">
         <div className="max-w-7xl mx-auto min-h-[500px]">
           {/* tab: analysis */}
@@ -161,7 +155,7 @@ export default function PredictionPage() {
                 isLoaded ? "opacity-100" : "opacity-0"
               }`}
             >
-              {/* 1. One-Line Insight Header (Dynamic) */}
+              {/* insight header */}
               <div className="text-center space-y-4">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-400/20 text-indigo-300 text-xs tracking-widest uppercase font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
@@ -182,7 +176,7 @@ export default function PredictionPage() {
                 </p>
               </div>
 
-              {/* 2. Symbolic Grid */}
+              {/* categories grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {(() => {
                   const dominantKey =
@@ -236,18 +230,18 @@ export default function PredictionPage() {
                           isDominant ? "ring-2 ring-indigo-500/30" : ""
                         }`}
                       >
-                        {/* Subtle Gradient Border on Hover */}
+                        {/* hover gradient */}
                         <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent group-hover:from-indigo-500/50 group-hover:to-violet-500/50 transition-all duration-500 opacity-50 group-hover:opacity-100" />
 
                         <div className="relative h-40 p-6 rounded-2xl bg-[#030014]/90 backdrop-blur-xl flex flex-col justify-center items-center gap-4 transition-all duration-500">
-                          {/* Dominant Highlight Tag */}
+                          {/* dominant tag */}
                           {isDominant && (
                             <div className="absolute top-4 right-4 text-[10px] uppercase tracking-widest text-indigo-300 font-bold opacity-80">
                               Dominant
                             </div>
                           )}
 
-                          {/* Symbolic Icon */}
+                          {/* icon */}
                           <div
                             className={`p-3 rounded-full bg-white/5 text-white/60 group-hover:text-white group-hover:bg-indigo-500/20 transition-all duration-500 group-hover:scale-110 ${
                               isDominant
@@ -275,18 +269,14 @@ export default function PredictionPage() {
             </div>
           )}
 
-          {/* tab: charts */}
           {activeTab === "charts" && <ChartViewer />}
 
-          {/* tab: timeline */}
           {activeTab === "timeline" && (
             <TimelineViewer timeline={data?.dasha?.timeline} />
           )}
 
-          {/* tab: yogas */}
           {activeTab === "yogas" && <YogaList yogas={data?.yogas} />}
 
-          {/* tab: chat */}
           {activeTab === "chat" && (
             <AstrologerChat context={data?.meta?.fact_sheet} />
           )}
