@@ -24,7 +24,7 @@ app = FastAPI(title="PanditAI: Neuro-Symbolic Engine")
 # --- CORS CONFIGURATION ---
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow Vercel/Netlify domains
+    allow_origins=["http://localhost:3000"],  # Explicitly allow frontend
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
