@@ -268,8 +268,8 @@ export default function MatchingPage() {
         {result && (
           // result display section
           <div className="mt-16 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-[0_0_50px_-12px_rgba(255,165,0,0.1)] animate-in fade-in slide-in-from-bottom-8 duration-700">
-            <div className="flex flex-col md:flex-row items-center gap-10 mb-10">
-              <div className="relative">
+            <div className="flex flex-col md:flex-row items-start gap-10 mb-10">
+              <div className="relative shrink-0">
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-orange-600 rounded-full opacity-20 blur-xl animate-pulse"></div>
                 <div className="w-32 h-32 rounded-full border-2 border-white/10 flex items-center justify-center bg-black/40 relative z-10 backdrop-blur-sm">
                   <div className="text-center">
@@ -284,10 +284,10 @@ export default function MatchingPage() {
               </div>
 
               <div className="flex-1 text-center md:text-left">
-                <h3 className="text-2xl font-bold mb-4 text-white/90">
+                <h3 className="text-2xl font-bold mb-6 text-white/90 border-b border-white/10 pb-4">
                   Cosmic Alignment Report
                 </h3>
-                <div className="text-white/70 leading-relaxed text-base font-light space-y-2">
+                <div className="text-white/70 leading-relaxed text-base font-light space-y-4">
                   {result.ai_verdict
                     .split("\n")
                     .map((line: string, i: number) => {
@@ -295,12 +295,30 @@ export default function MatchingPage() {
                       const match = line.match(/^\*\s*\*\*(.*?)\*\*:\s*(.*)/);
                       if (match) {
                         const [_, key, value] = match;
+                        const isVerdict = key.toLowerCase().includes("verdict");
                         return (
-                          <div key={i} className="flex gap-2 items-start">
-                            <span className="text-amber-400 font-bold shrink-0">
+                          <div
+                            key={i}
+                            className={`flex flex-col md:flex-row gap-2 md:gap-4 items-start ${
+                              isVerdict
+                                ? "bg-white/5 p-4 rounded-xl border border-white/5 mt-4"
+                                : ""
+                            }`}
+                          >
+                            <span
+                              className={`text-amber-400 font-bold shrink-0 md:w-32 text-left ${
+                                isVerdict ? "text-amber-200 md:w-auto" : ""
+                              }`}
+                            >
                               {key}:
                             </span>
-                            <span>{value}</span>
+                            <span
+                              className={
+                                isVerdict ? "test-white font-medium" : ""
+                              }
+                            >
+                              {value}
+                            </span>
                           </div>
                         );
                       }
