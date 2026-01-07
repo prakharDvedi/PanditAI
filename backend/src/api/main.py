@@ -4,10 +4,12 @@ import uvicorn
 import torch
 import torch.nn as nn
 from datetime import datetime
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
+from collections import defaultdict
+import time
 from src.api.schemas import BirthDetails, ChartResponse
 
 # --- IMPORT ENGINES ---
@@ -21,10 +23,40 @@ from src.utils.chart_plotter import draw_north_indian_chart
 
 app = FastAPI(title="PanditAI: Neuro-Symbolic Engine")
 
+# --- RATE LIMITING MIDDLEWARE ---
+
+# Simple in-memory rate limiter: IP -> last_request_time
+# Limit: 1 request per second
+RATE_LIMIT_DELAY = 1.0
+_ip_timestamps = defaultdict(float)
+
+
+@app.middleware("http")
+async def rate_limit_middleware(request: Request, call_next):
+    client_ip = request.client.host
+    now = time.time()
+    last_time = _ip_timestamps[client_ip]
+
+    if now - last_time < RATE_LIMIT_DELAY:
+        # Check if it's an OPTIONS request (CORS preflight), let it pass
+        if request.method == "OPTIONS":
+            return await call_next(request)
+
+        return Response(
+            content=json.dumps({"detail": "Rate limit exceeded. Please wait."}),
+            status_code=429,
+            media_type="application/json",
+        )
+
+    _ip_timestamps[client_ip] = now
+    response = await call_next(request)
+    return response
+
+
 # --- CORS CONFIGURATION ---
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow Vercel/Netlify domains
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
