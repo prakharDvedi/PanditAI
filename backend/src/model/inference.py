@@ -43,7 +43,7 @@ def generate_horoscope_reading(predictions, chart_meta):
     3. End with clear REMEDIES (The "Solution").
     
     Tone: UNFILTERED, BOLD, DRAMATIC, SENSATIONAL.
-    IMPORTANT: Do not be boring. Make WILD claims if the stars align. Use shock value.
+    IMPORTANT: Do not be boring. Give example scenarios as well.Make WILD claims if the stars align. Use shock value.
     """
 
     # --- 2. USER MESSAGE (The Data) ---
