@@ -16,12 +16,12 @@ type CategoryKey =
   | "miscellaneous";
 
 const categories: { key: CategoryKey; title: string; image: string }[] = [
-  { key: "personality", title: "Personality", image: "/personality-bg.png" },
-  { key: "health", title: "Health", image: "/health.png" },
-  { key: "money", title: "Money", image: "/money.png" },
-  { key: "career", title: "Career", image: "/career.png" },
-  { key: "love", title: "Love", image: "/love.png" },
-  { key: "miscellaneous", title: "Miscellaneous", image: "/misc.png" },
+  { key: "personality", title: "Personality", image: "/personality-bg.webp" },
+  { key: "health", title: "Health", image: "/health.webp" },
+  { key: "money", title: "Money", image: "/money.webp" },
+  { key: "career", title: "Career", image: "/career.webp" },
+  { key: "love", title: "Love", image: "/love.webp" },
+  { key: "miscellaneous", title: "Miscellaneous", image: "/misc.webp" },
 ];
 
 export default function PredictionPage() {

@@ -14,12 +14,12 @@ type CategoryKey =
   | "miscellaneous";
 
 const categoryMeta: Record<CategoryKey, { title: string; image: string }> = {
-  personality: { title: "Personality", image: "/personality-bg.png" },
-  health: { title: "Health", image: "/health.png" },
-  money: { title: "Money", image: "/money.png" },
-  career: { title: "Career", image: "/career.png" },
-  love: { title: "Love", image: "/love.png" },
-  miscellaneous: { title: "Miscellaneous", image: "/misc.png" },
+  personality: { title: "Personality", image: "/personality-bg.webp" },
+  health: { title: "Health", image: "/health.webp" },
+  money: { title: "Money", image: "/money.webp" },
+  career: { title: "Career", image: "/career.webp" },
+  love: { title: "Love", image: "/love.webp" },
+  miscellaneous: { title: "Miscellaneous", image: "/misc.webp" },
 };
 
 export default function AnalysisCategoryPage() {

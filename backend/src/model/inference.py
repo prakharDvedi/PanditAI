@@ -37,12 +37,13 @@ def generate_horoscope_reading(predictions, chart_meta):
     - miscellaneous
     
     STRUCTURE REQUIREMENT:
-    For EACH key, the value must be a detailed string following this EXACT flow:
-    1. Start with POSITIVE traits, strengths, and good fortune (The "Good").
-    2. Then mention potential CHALLENGES, weaknesses, or negatives (The "Bad").
+    For EACH key, the value must be a COMPREHENSIVE and DETAILED string (minimum 4-5 paragraphs) following this EXACT flow:
+    1. Start with POSITIVE traits, strengths, and good fortune (The "Good"). Expand on *why* these traits exist based on the chart.
+    2. Then mention potential CHALLENGES, weaknesses, or negatives (The "Bad"). Be specific but constructive.
     3. End with clear REMEDIES, actionable advice, or things to focus on (The "Solution").
     
     Tone: Empathetic, wise, and constructive.
+    IMPORTANT: Do not be brief. Write in depth. Use evocative language.
     """
 
     # --- 2. USER MESSAGE (The Data) ---
@@ -66,9 +67,12 @@ def generate_horoscope_reading(predictions, chart_meta):
     miscellaneous
     
     Each value string MUST follow the structure: 
-    1. [Positives/Strengths]
-    2. [Challenges/Weaknesses]
-    3. [Remedies/Focus Area]
+    1. [Positives/Strengths] - Why?
+    2. [Challenges/Weaknesses] - Specifics?
+    3. [Remedies/Focus Area] - Actionable?
+    
+    CRITICAL: The user wants deep, descriptive insights. Avoid short sentences. 
+    Use rich vocabulary. EXPAND on every point. Make it feel like a premium consultation.
     
     Do NOT add any extra keys.
     Do NOT add explanations.
