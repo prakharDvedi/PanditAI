@@ -89,28 +89,28 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#030014] text-foreground flex flex-col relative overflow-hidden selection:bg-purple-500/30">
+    <div className="relative flex flex-col min-h-screen w-full overflow-hidden bg-[#030014] text-foreground selection:bg-purple-500/30">
       {/* background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#020617] to-[#0f172a] bg-[length:200%_200%] animate-drift z-0" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#0f172a] via-[#020617] to-[#0f172a] bg-[length:200%_200%] animate-drift" />
 
       {/* ambient orbs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-breathe z-0 pointer-events-none mix-blend-screen" />
+      <div className="absolute top-[-10%] left-[-10%] z-0 w-[500px] h-[500px] rounded-full bg-purple-600/20 blur-[120px] pointer-events-none mix-blend-screen animate-breathe" />
 
-      {/* Orb 2: Amber/Orange (Bottom Right) */}
+      {/* bottom right one*/}
       <div
-        className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-amber-600/10 rounded-full blur-[150px] animate-breathe z-0 pointer-events-none mix-blend-screen"
+        className="absolute bottom-[-10%] right-[-10%] z-0 w-[600px] h-[600px] rounded-full bg-amber-600/10 blur-[150px] pointer-events-none mix-blend-screen animate-breathe"
         style={{ animationDelay: "5s" }}
       />
 
       {/* noise overlay */}
       <div
-        className="absolute inset-0 opacity-[0.03] z-[1] pointer-events-none mix-blend-overlay"
+        className="absolute inset-0 z-[1] opacity-[0.03] pointer-events-none mix-blend-overlay"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}
       />
 
-      <main className="flex-1 flex flex-col lg:flex-row items-center justify-center p-6 lg:p-24 gap-12 z-10 relative">
+      <main className="relative z-10 flex flex-1 flex-col lg:flex-row items-center justify-center gap-12 p-6 lg:p-24">
         <h2 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight drop-shadow-2xl">
           Welcome to <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-orange-400 to-rose-200 animate-gradient-x">
@@ -119,20 +119,20 @@ export default function Home() {
         </h2>
 
         <div className="flex-1 w-full max-w-md">
-          <div className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl p-8 ring-1 ring-white/5 relative overflow-hidden group animate-shadow-glow">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          <div className="relative group p-8 rounded-2xl bg-white/5 border border-white/10 ring-1 ring-white/5 backdrop-blur-2xl overflow-hidden animate-shadow-glow">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-500" />
 
-            <div className="text-center mb-6 relative z-10">
-              <h3 className="text-2xl font-bold mb-2 text-white/90">
+            <div className="relative z-10 mb-6 text-center">
+              <h3 className="mb-2 text-2xl font-bold text-white/90">
                 Enter Birth Details
               </h3>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
+            <form onSubmit={handleSubmit} className="relative z-10 space-y-5">
               <div>
                 <label
                   htmlFor="dob"
-                  className="block text-xs font-medium mb-1 text-white/60 uppercase tracking-wider"
+                  className="block mb-1 text-xs font-medium text-white/60 uppercase tracking-wider"
                 >
                   Date of Birth
                 </label>
@@ -144,7 +144,7 @@ export default function Home() {
                   onChange={(e) =>
                     setFormData({ ...formData, dob: e.target.value })
                   }
-                  className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 text-white placeholder-white/20 transition-all font-light"
+                  className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder-white/20 font-light focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 transition-all"
                 />
               </div>
 
@@ -152,7 +152,7 @@ export default function Home() {
                 <div>
                   <label
                     htmlFor="time"
-                    className="block text-xs font-medium mb-1 text-white/60 uppercase tracking-wider"
+                    className="block mb-1 text-xs font-medium text-white/60 uppercase tracking-wider"
                   >
                     Time
                   </label>
@@ -164,13 +164,13 @@ export default function Home() {
                     onChange={(e) =>
                       setFormData({ ...formData, time: e.target.value })
                     }
-                    className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 text-white transition-all font-light"
+                    className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white font-light focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 transition-all"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="ayanamsa"
-                    className="block text-xs font-medium mb-1 text-white/60 uppercase tracking-wider"
+                    className="block mb-1 text-xs font-medium text-white/60 uppercase tracking-wider"
                   >
                     Ayanamsa
                   </label>
@@ -180,7 +180,7 @@ export default function Home() {
                     onChange={(e) =>
                       setFormData({ ...formData, ayanamsa: e.target.value })
                     }
-                    className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 text-white transition-all font-light appearance-none"
+                    className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white font-light appearance-none focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 transition-all"
                   >
                     <option value="lahiri" className="bg-[#1a0b2e]">
                       Lahiri
@@ -190,13 +190,13 @@ export default function Home() {
               </div>
 
               <div>
-                <label className="block text-xs font-medium mb-1 text-white/60 uppercase tracking-wider">
+                <label className="block mb-1 text-xs font-medium text-white/60 uppercase tracking-wider">
                   Birth Location
                 </label>
 
                 <LocationAutocomplete onLocationSelect={handleLocationSelect} />
                 {formData.lat !== 0 && (
-                  <div className="mt-2 text-[10px] uppercase tracking-widest text-amber-500/80 font-medium">
+                  <div className="mt-2 text-[10px] font-medium text-amber-500/80 uppercase tracking-widest">
                     📍 {formData.city} ({formData.lat.toFixed(2)}°,{" "}
                     {formData.lon.toFixed(2)}°)
                   </div>
@@ -212,7 +212,7 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={loading || formData.lat === 0}
-                className="w-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold py-4 text-lg rounded-xl mt-4 transition-all duration-300 shadow-lg shadow-amber-900/20 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full py-4 mt-4 text-lg font-bold text-white rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 shadow-lg shadow-amber-900/20 transform transition-all duration-300 hover:from-amber-500 hover:to-orange-500 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">
@@ -229,7 +229,7 @@ export default function Home() {
           <div className="mt-8 text-center">
             <a
               href="/matching"
-              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group"
+              className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/5 border border-white/10 group transition-colors hover:bg-white/10"
             >
               <span className="text-rose-200/80 text-xs font-medium tracking-widest uppercase group-hover:text-rose-200 transition-colors">
                 Love Compatibility Check

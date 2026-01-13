@@ -34,7 +34,7 @@ export default function YogaList({ yogas }: YogaListProps) {
           return (
             <div
               key={idx}
-              className={`group relative bg-[#1a1a1e] border border-white/10 rounded-2xl p-6 transition-all duration-300 hover:border-amber-500/30 ${
+              className={`relative group p-6 rounded-2xl bg-[#1a1a1e] border border-white/10 transition-all duration-300 hover:border-amber-500/30 ${
                 isExpanded ? "bg-[#202025] scale-[1.02]" : "hover:bg-[#202025]"
               }`}
             >

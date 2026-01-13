@@ -100,7 +100,7 @@ export default function LocationAutocomplete({
       )}
 
       {isOpen && suggestions.length > 0 && (
-        <div className="absolute z-50 w-full mt-1 bg-gray-800 border border-white/20 rounded-lg shadow-2xl max-h-60 overflow-y-auto">
+        <div className="absolute z-50 w-full mt-1 max-h-60 overflow-y-auto rounded-lg bg-gray-800 border border-white/20 shadow-2xl">
           {suggestions.map((suggestion, index) => (
             <button
               key={index}

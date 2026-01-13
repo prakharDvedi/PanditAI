@@ -96,24 +96,24 @@ export default function MatchingPage() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#030014] text-foreground flex flex-col relative overflow-hidden selection:bg-purple-500/30">
+    <div className="relative flex flex-col min-h-screen w-full overflow-hidden bg-[#030014] text-foreground selection:bg-purple-500/30">
       {/* background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0514] via-[#050505] to-[#020103] z-0" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#0a0514] via-[#050505] to-[#020103]" />
 
       {/* ambient orbs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[120px] animate-pulse-slow z-0 pointer-events-none mix-blend-screen" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-amber-600/10 rounded-full blur-[150px] animate-pulse-slower z-0 pointer-events-none mix-blend-screen" />
+      <div className="absolute top-[-10%] left-[-10%] z-0 w-[500px] h-[500px] rounded-full bg-purple-600/20 blur-[120px] pointer-events-none mix-blend-screen animate-pulse-slow" />
+      <div className="absolute bottom-[-10%] right-[-10%] z-0 w-[600px] h-[600px] rounded-full bg-amber-600/10 blur-[150px] pointer-events-none mix-blend-screen animate-pulse-slower" />
 
       {/* noise overlay */}
       <div
-        className="absolute inset-0 opacity-[0.03] z-[1] pointer-events-none mix-blend-overlay"
+        className="absolute inset-0 z-[1] opacity-[0.03] pointer-events-none mix-blend-overlay"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
         }}
       />
 
-      <header className="border-b border-white/10 bg-black/20 backdrop-blur-md sticky top-0 z-20">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <header className="sticky top-0 z-20 border-b border-white/10 bg-black/20 backdrop-blur-md">
+        <div className="flex items-center justify-between h-16 max-w-6xl mx-auto px-6">
           <Link
             href="/"
             className="text-sm font-medium text-white/60 hover:text-amber-400 transition"
@@ -127,12 +127,12 @@ export default function MatchingPage() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto p-6 md:p-12 relative z-10">
+      <main className="relative z-10 max-w-6xl mx-auto p-6 md:p-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <section className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl" />
+          <section className="relative group p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity" />
 
-            <h2 className="text-xs font-bold uppercase tracking-widest text-amber-500/80 mb-6 flex items-center gap-2">
+            <h2 className="flex items-center gap-2 mb-6 text-xs font-bold text-amber-500/80 uppercase tracking-widest">
               <span className="w-2 h-2 rounded-full bg-amber-500"></span>
               First Person
             </h2>
@@ -140,7 +140,7 @@ export default function MatchingPage() {
               <input
                 type="text"
                 placeholder="Full Name"
-                className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/20 transition text-white placeholder-white/20"
+                className="w-full px-4 py-3 text-sm text-white placeholder-white/20 rounded-xl bg-black/20 border border-white/10 outline-none transition focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/20"
                 value={p1.name}
                 onChange={(e) => updateP1("name", e.target.value)}
               />
@@ -148,21 +148,21 @@ export default function MatchingPage() {
                 <input
                   type="number"
                   placeholder="DD"
-                  className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-amber-500/50 transition text-white placeholder-white/20"
+                  className="px-4 py-3 text-sm text-white placeholder-white/20 rounded-xl bg-black/20 border border-white/10 outline-none transition focus:border-amber-500/50"
                   value={p1.day}
                   onChange={(e) => updateP1("day", parseInt(e.target.value))}
                 />
                 <input
                   type="number"
                   placeholder="MM"
-                  className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-amber-500/50 transition text-white placeholder-white/20"
+                  className="px-4 py-3 text-sm text-white placeholder-white/20 rounded-xl bg-black/20 border border-white/10 outline-none transition focus:border-amber-500/50"
                   value={p1.month}
                   onChange={(e) => updateP1("month", parseInt(e.target.value))}
                 />
                 <input
                   type="number"
                   placeholder="YYYY"
-                  className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-amber-500/50 transition text-white placeholder-white/20"
+                  className="px-4 py-3 text-sm text-white placeholder-white/20 rounded-xl bg-black/20 border border-white/10 outline-none transition focus:border-amber-500/50"
                   value={p1.year}
                   onChange={(e) => updateP1("year", parseInt(e.target.value))}
                 />
@@ -171,14 +171,14 @@ export default function MatchingPage() {
                 <input
                   type="number"
                   placeholder="Hour"
-                  className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-amber-500/50 transition text-white placeholder-white/20"
+                  className="px-4 py-3 text-sm text-white placeholder-white/20 rounded-xl bg-black/20 border border-white/10 outline-none transition focus:border-amber-500/50"
                   value={p1.hour}
                   onChange={(e) => updateP1("hour", parseInt(e.target.value))}
                 />
                 <input
                   type="number"
                   placeholder="Min"
-                  className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-amber-500/50 transition text-white placeholder-white/20"
+                  className="px-4 py-3 text-sm text-white placeholder-white/20 rounded-xl bg-black/20 border border-white/10 outline-none transition focus:border-amber-500/50"
                   value={p1.minute}
                   onChange={(e) => updateP1("minute", parseInt(e.target.value))}
                 />

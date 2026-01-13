@@ -158,7 +158,7 @@ export default function AstrologerChat({ context }: ChatProps) {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
             placeholder="Ask the stars..."
-            className="w-full bg-black/20 border border-white/10 rounded-xl pl-4 pr-12 py-3.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/20 transition-all shadow-inner"
+            className="w-full pl-4 pr-12 py-3.5 text-sm text-white placeholder-white/30 rounded-xl bg-black/20 border border-white/10 shadow-inner transition-all focus:border-indigo-500/50 focus:outline-none focus:ring-1 focus:ring-indigo-500/20"
           />
           <button
             onClick={sendMessage}

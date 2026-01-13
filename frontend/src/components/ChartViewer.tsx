@@ -62,7 +62,7 @@ export default function ChartViewer() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-reveal">
       {/* d1 chart card */}
-      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center">
+      <div className="flex flex-col items-center p-6 rounded-2xl bg-white/5 border border-white/10">
         <h3 className="text-xl font-serif text-amber-100 mb-4">
           Lagna Chart (D1)
         </h3>
