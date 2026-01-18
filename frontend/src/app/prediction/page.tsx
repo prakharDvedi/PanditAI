@@ -158,7 +158,7 @@ export default function PredictionPage() {
               {/* insight header */}
               <div className="text-center space-y-4">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-400/20 text-indigo-300 text-xs tracking-widest uppercase font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 "></span>
                   Key Cosmic Focus
                 </div>
                 <p className="text-2xl md:text-3xl font-light text-white/90 max-w-4xl mx-auto leading-relaxed">

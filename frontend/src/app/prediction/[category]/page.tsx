@@ -60,14 +60,14 @@ export default function AnalysisCategoryPage() {
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-[#030014] text-[#f5f5f7] font-sans selection:bg-cyan-500/30 flex flex-col">
-      {/* 1. Multi-stop Dark Gradient Background */}
+      {/*bg*/}
       <div className="absolute inset-0 bg-gradient-to-br from-[#0a0514] via-[#050505] to-[#020103] z-0" />
 
-      {/* 2. Ambient Orbs - Variant Colors (Violet & Cyan) */}
+      {/*orb*/}
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[120px] animate-pulse-slow z-0 pointer-events-none mix-blend-screen" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] animate-pulse-slower z-0 pointer-events-none mix-blend-screen" />
 
-      {/* 3. Subtle Noise Overlay */}
+      {/*noise */}
       <div
         className="absolute inset-0 opacity-[0.03] z-[1] pointer-events-none mix-blend-overlay"
         style={{
@@ -77,7 +77,7 @@ export default function AnalysisCategoryPage() {
 
       {/* header */}
       <header className="relative z-20 pt-8 px-8 pb-4 border-b border-white/5 bg-black/20 backdrop-blur-md">
-        {/* header background image (subtle) */}
+        {/* header bg img */}
         <div
           className="absolute inset-0 bg-cover bg-center opacity-20 blur-sm pointer-events-none"
           style={{ backgroundImage: `url('${meta.image}')` }}
