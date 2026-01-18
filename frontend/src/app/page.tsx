@@ -89,41 +89,28 @@ export default function Home() {
   };
 
   return (
-    <div className="relative flex flex-col min-h-screen w-full overflow-hidden bg-[#030014] text-foreground selection:bg-purple-500/30">
-      {/* background gradient */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#0f172a] via-[#020617] to-[#0f172a] bg-[length:200%_200%] animate-drift" />
-
-      {/* ambient orbs */}
-      <div className="absolute top-[-10%] left-[-10%] z-0 w-[500px] h-[500px] rounded-full bg-purple-600/20 blur-[120px] pointer-events-none mix-blend-screen animate-breathe" />
-
-      {/* bottom right one*/}
-      <div
-        className="absolute bottom-[-10%] right-[-10%] z-0 w-[600px] h-[600px] rounded-full bg-amber-600/10 blur-[150px] pointer-events-none mix-blend-screen animate-breathe"
-        style={{ animationDelay: "5s" }}
-      />
-
-      {/* noise overlay */}
-      <div
-        className="absolute inset-0 z-[1] opacity-[0.03] pointer-events-none mix-blend-overlay"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
+    <div className="relative flex flex-col min-h-screen w-full overflow-hidden bg-background text-foreground selection:bg-primary/30">
+      {/* Background: Subtle Warm Gradient Mesh */}
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-background to-background pointer-events-none" />
 
       <main className="relative z-10 flex flex-1 flex-col lg:flex-row items-center justify-center gap-12 p-6 lg:p-24">
-        <h2 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight drop-shadow-2xl">
-          Welcome to <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-orange-400 to-rose-200 animate-gradient-x">
-            PanditAI
-          </span>
-        </h2>
+        <div className="text-center lg:text-left space-y-6 max-w-2xl">
+          <h2 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight drop-shadow-xl font-serif">
+            Welcome to <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fa5c5c] via-[#fd8a6b] to-[#fbef76]">
+              PanditAI
+            </span>
+          </h2>
+          <p className="text-xl text-muted-foreground font-light max-w-lg mx-auto lg:mx-0">
+            Ancient Vedic astrology met with modern AI. Reveal your cosmic
+            blueprint with precision.
+          </p>
+        </div>
 
         <div className="flex-1 w-full max-w-md">
-          <div className="relative group p-8 rounded-2xl bg-white/5 border border-white/10 ring-1 ring-white/5 backdrop-blur-2xl overflow-hidden animate-shadow-glow">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-500" />
-
+          <div className="relative p-8 rounded-2xl bg-card/60 border border-white/5 ring-1 ring-white/5 backdrop-blur-xl shadow-2xl">
             <div className="relative z-10 mb-6 text-center">
-              <h3 className="mb-2 text-2xl font-bold text-white/90">
+              <h3 className="mb-2 text-2xl font-bold text-foreground">
                 Enter Birth Details
               </h3>
             </div>
@@ -132,7 +119,7 @@ export default function Home() {
               <div>
                 <label
                   htmlFor="dob"
-                  className="block mb-1 text-xs font-medium text-white/60 uppercase tracking-wider"
+                  className="block mb-1 text-xs font-medium text-muted-foreground uppercase tracking-wider"
                 >
                   Date of Birth
                 </label>
@@ -144,7 +131,7 @@ export default function Home() {
                   onChange={(e) =>
                     setFormData({ ...formData, dob: e.target.value })
                   }
-                  className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder-white/20 font-light focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 transition-all"
+                  className="w-full px-4 py-3 rounded-xl bg-input/40 border border-white/10 text-foreground placeholder-muted-foreground/50 font-light focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all cursor-pointer"
                 />
               </div>
 
@@ -152,7 +139,7 @@ export default function Home() {
                 <div>
                   <label
                     htmlFor="time"
-                    className="block mb-1 text-xs font-medium text-white/60 uppercase tracking-wider"
+                    className="block mb-1 text-xs font-medium text-muted-foreground uppercase tracking-wider"
                   >
                     Time
                   </label>
@@ -164,13 +151,13 @@ export default function Home() {
                     onChange={(e) =>
                       setFormData({ ...formData, time: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white font-light focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-input/40 border border-white/10 text-foreground font-light focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all cursor-pointer"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="ayanamsa"
-                    className="block mb-1 text-xs font-medium text-white/60 uppercase tracking-wider"
+                    className="block mb-1 text-xs font-medium text-muted-foreground uppercase tracking-wider"
                   >
                     Ayanamsa
                   </label>
@@ -180,9 +167,9 @@ export default function Home() {
                     onChange={(e) =>
                       setFormData({ ...formData, ayanamsa: e.target.value })
                     }
-                    className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white font-light appearance-none focus:border-amber-500/50 focus:outline-none focus:ring-2 focus:ring-amber-500/20 transition-all"
+                    className="w-full px-4 py-3 rounded-xl bg-input/40 border border-white/10 text-foreground font-light appearance-none focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all cursor-pointer"
                   >
-                    <option value="lahiri" className="bg-[#1a0b2e]">
+                    <option value="lahiri" className="bg-card text-foreground">
                       Lahiri
                     </option>
                   </select>
@@ -190,13 +177,13 @@ export default function Home() {
               </div>
 
               <div>
-                <label className="block mb-1 text-xs font-medium text-white/60 uppercase tracking-wider">
+                <label className="block mb-1 text-xs font-medium text-muted-foreground uppercase tracking-wider">
                   Birth Location
                 </label>
 
                 <LocationAutocomplete onLocationSelect={handleLocationSelect} />
                 {formData.lat !== 0 && (
-                  <div className="mt-2 text-[10px] font-medium text-amber-500/80 uppercase tracking-widest">
+                  <div className="mt-2 text-[10px] font-medium text-primary uppercase tracking-widest">
                     📍 {formData.city} ({formData.lat.toFixed(2)}°,{" "}
                     {formData.lon.toFixed(2)}°)
                   </div>
@@ -204,7 +191,7 @@ export default function Home() {
               </div>
 
               {error && (
-                <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-200 text-sm">
+                <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive text-sm">
                   {error}
                 </div>
               )}
@@ -212,7 +199,7 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={loading || formData.lat === 0}
-                className="w-full py-4 mt-4 text-lg font-bold text-white rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 shadow-lg shadow-amber-900/20 transform transition-all duration-300 hover:from-amber-500 hover:to-orange-500 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 mt-4 text-lg font-bold text-primary-foreground rounded-xl bg-gradient-to-r from-[#fa5c5c] to-[#fd8a6b] shadow-lg shadow-primary/20 transform transition-all duration-300 hover:from-[#fd8a6b] hover:to-[#fec288] hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">
@@ -231,10 +218,10 @@ export default function Home() {
               href="/matching"
               className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/5 border border-white/10 group transition-colors hover:bg-white/10"
             >
-              <span className="text-rose-200/80 text-xs font-medium tracking-widest uppercase group-hover:text-rose-200 transition-colors">
+              <span className="text-muted-foreground text-xs font-medium tracking-widest uppercase group-hover:text-primary transition-colors">
                 Love Compatibility Check
               </span>
-              <span className="text-rose-200/80 group-hover:translate-x-1 transition-transform group-hover:text-rose-200">
+              <span className="text-muted-foreground group-hover:translate-x-1 transition-transform group-hover:text-primary">
                 →
               </span>
             </a>

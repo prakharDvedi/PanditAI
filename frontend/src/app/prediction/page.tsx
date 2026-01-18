@@ -56,31 +56,19 @@ export default function PredictionPage() {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-[#030014] text-[#f5f5f7] font-sans selection:bg-cyan-500/30 flex flex-col">
-      {/* background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0514] via-[#050505] to-[#020103] z-0" />
+    <div className="min-h-screen relative bg-background text-foreground font-sans selection:bg-primary/20 flex flex-col">
+      {/* Background: Subtle Warm Gradient */}
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-background to-background pointer-events-none" />
 
-      {/* ambient orbs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[120px] animate-pulse-slow z-0 pointer-events-none mix-blend-screen" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px] animate-pulse-slower z-0 pointer-events-none mix-blend-screen" />
-
-      {/* noise overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03] z-[1] pointer-events-none mix-blend-overlay"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
-
-      <header className="relative z-20 pt-8 px-8 pb-4 border-b border-white/5 bg-black/20 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto flex justify-between items-center mb-6 text-xs uppercase tracking-widest text-white/40">
+      <header className="relative z-20 pt-8 px-8 pb-4 border-b border-white/5 bg-background/80 backdrop-blur-xl sticky top-0">
+        <div className="max-w-7xl mx-auto flex justify-between items-center mb-6 text-xs uppercase tracking-widest text-muted-foreground/60">
           <div className="flex gap-6">
-            <Link href="/" className="hover:text-amber-200 transition-colors">
+            <Link href="/" className="hover:text-primary transition-colors">
               Home
             </Link>
             <Link
               href="/matching"
-              className="hover:text-amber-200 transition-colors"
+              className="hover:text-primary transition-colors"
             >
               MatchMaking
             </Link>
@@ -89,31 +77,31 @@ export default function PredictionPage() {
 
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
-            <h1 className="text-xs tracking-[0.6em] uppercase text-white/40 mb-1">
+            <h1 className="text-xs tracking-[0.6em] uppercase text-muted-foreground mb-1">
               PanditAI
             </h1>
-            <div className="text-2xl font-serif text-amber-100/90 tracking-wide">
+            <div className="text-2xl font-serif text-foreground tracking-wide">
               Vedic Life Architect
             </div>
           </div>
 
           {/* destiny score */}
-          <div className="group relative flex items-center gap-4 bg-white/5 rounded-full px-6 py-2 border border-white/10 cursor-help">
+          <div className="group relative flex items-center gap-4 bg-card/40 rounded-full px-6 py-2 border border-white/5 cursor-help ring-1 ring-white/5">
             <div className="text-right">
-              <div className="text-[10px] uppercase tracking-widest text-white/50">
+              <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
                 Destiny Score
               </div>
-              <div className="text-xl font-bold text-amber-200">
+              <div className="text-xl font-bold text-primary">
                 {data?.meta ? data.meta.destiny_score : "--"}/100
               </div>
             </div>
-            <div className="h-10 w-10 rounded-full border-2 border-amber-200/30 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-full border-2 border-primary/20 flex items-center justify-center text-primary bg-primary/5">
               <span className="text-lg">🌟</span>
             </div>
 
-            <div className="absolute top-full mt-2 right-0 w-64 p-4 bg-zinc-900 border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 text-xs text-zinc-300 leading-relaxed translate-y-2 group-hover:translate-y-0">
+            <div className="absolute top-full mt-2 right-0 w-64 p-4 bg-popover border border-white/10 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 text-xs text-muted-foreground leading-relaxed translate-y-2 group-hover:translate-y-0">
               <p>
-                <strong className="text-amber-200 block mb-1">
+                <strong className="text-primary block mb-1">
                   Vedic Strength Index
                 </strong>
                 Aggregated score based on planetary strengths (Shadbala),
@@ -132,14 +120,14 @@ export default function PredictionPage() {
               }}
               className={`relative px-1 py-2 text-sm tracking-widest uppercase transition-all duration-300 flex items-center gap-2 ${
                 activeTab === tab.id
-                  ? "text-amber-200"
-                  : "text-white/40 hover:text-white/70"
+                  ? "text-primary font-medium"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               <tab.icon className="w-4 h-4 mb-0.5" />
               {tab.label}
               {activeTab === tab.id && (
-                <div className="absolute bottom-0 left-0 w-full h-px bg-amber-200 shadow-[0_0_10px_#fcd34d]" />
+                <div className="absolute bottom-0 left-0 w-full h-px bg-primary shadow-[0_0_10px_var(--primary)]" />
               )}
             </button>
           ))}
@@ -157,17 +145,17 @@ export default function PredictionPage() {
             >
               {/* insight header */}
               <div className="text-center space-y-4">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-400/20 text-indigo-300 text-xs tracking-widest uppercase font-medium">
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 "></span>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs tracking-widest uppercase font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary "></span>
                   Key Cosmic Focus
                 </div>
-                <p className="text-2xl md:text-3xl font-light text-white/90 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-2xl md:text-3xl font-light text-foreground/90 max-w-4xl mx-auto leading-relaxed">
                   {data?.ai_reading?.meta?.insight ? (
                     <span>"{data.ai_reading.meta.insight}"</span>
                   ) : (
                     <span>
                       "Your{" "}
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-300 to-indigo-300 font-normal">
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-normal">
                         Cosmic Energy
                       </span>{" "}
                       is shifting, bringing new opportunities for growth."
@@ -227,36 +215,34 @@ export default function PredictionPage() {
                         key={cat.key}
                         href={`/prediction/${cat.key}`}
                         className={`group relative outline-none block p-[1px] rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 ${
-                          isDominant ? "ring-2 ring-indigo-500/30" : ""
+                          isDominant ? "ring-2 ring-primary/40" : ""
                         }`}
                       >
                         {/* hover gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent group-hover:from-indigo-500/50 group-hover:to-violet-500/50 transition-all duration-500 opacity-50 group-hover:opacity-100" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent group-hover:from-primary/20 group-hover:to-secondary/20 transition-all duration-500 opacity-50 group-hover:opacity-100" />
 
-                        <div className="relative h-40 p-6 rounded-2xl bg-[#030014]/90 backdrop-blur-xl flex flex-col justify-center items-center gap-4 transition-all duration-500">
+                        <div className="relative h-40 p-6 rounded-2xl bg-card/60 backdrop-blur-xl flex flex-col justify-center items-center gap-4 transition-all duration-500 border border-white/5 group-hover:border-primary/20">
                           {/* dominant tag */}
                           {isDominant && (
-                            <div className="absolute top-4 right-4 text-[10px] uppercase tracking-widest text-indigo-300 font-bold opacity-80">
+                            <div className="absolute top-4 right-4 text-[10px] uppercase tracking-widest text-primary font-bold opacity-80 border border-primary/20 px-2 py-0.5 rounded-full">
                               Dominant
                             </div>
                           )}
 
                           {/* icon */}
                           <div
-                            className={`p-3 rounded-full bg-white/5 text-white/60 group-hover:text-white group-hover:bg-indigo-500/20 transition-all duration-500 group-hover:scale-110 ${
-                              isDominant
-                                ? "bg-indigo-500/20 text-indigo-200"
-                                : ""
+                            className={`p-3 rounded-full bg-white/5 text-muted-foreground group-hover:text-primary group-hover:bg-primary/10 transition-all duration-500 group-hover:scale-110 ${
+                              isDominant ? "bg-primary/10 text-primary" : ""
                             }`}
                           >
                             {cat.icon}
                           </div>
 
                           <div className="text-center space-y-1">
-                            <h3 className="text-sm tracking-widest uppercase text-white/50 group-hover:text-white transition-colors duration-500 font-semibold">
+                            <h3 className="text-sm tracking-widest uppercase text-foreground/70 group-hover:text-foreground transition-colors duration-500 font-semibold">
                               {cat.title}
                             </h3>
-                            <p className="text-[10px] text-white/30 uppercase tracking-wider group-hover:text-white/50 transition-colors">
+                            <p className="text-[10px] text-muted-foreground uppercase tracking-wider group-hover:text-muted-foreground/80 transition-colors">
                               {cat.desc}
                             </p>
                           </div>

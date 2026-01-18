@@ -52,7 +52,7 @@ export default function LocationAutocomplete({
       setIsLoading(true);
       try {
         const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-          query
+          query,
         )}&format=json&limit=5&addressdetails=1`;
         const response = await fetch(url, {
           headers: {
@@ -90,27 +90,27 @@ export default function LocationAutocomplete({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Start typing city name..."
-        className="w-full px-4 py-2 bg-white/5 border border-white/20 rounded-lg focus:border-[#ff8c42] focus:outline-none focus:ring-1 focus:ring-[#ff8c42]"
+        className="w-full px-4 py-3 rounded-xl bg-input/40 border border-white/10 text-foreground placeholder-muted-foreground/50 font-light focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all"
       />
 
       {isLoading && (
-        <div className="absolute right-3 top-3">
-          <div className="w-5 h-5 border-2 border-[#ff8c42] border-t-transparent rounded-full animate-spin"></div>
+        <div className="absolute right-3 top-3.5">
+          <div className="w-5 h-5 border-2 border-primary/50 border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
 
       {isOpen && suggestions.length > 0 && (
-        <div className="absolute z-50 w-full mt-1 max-h-60 overflow-y-auto rounded-lg bg-gray-800 border border-white/20 shadow-2xl">
+        <div className="absolute z-50 w-full mt-1 max-h-60 overflow-y-auto rounded-lg bg-card border border-white/10 shadow-2xl">
           {suggestions.map((suggestion, index) => (
             <button
               key={index}
               onClick={() => handleSelect(suggestion)}
-              className="w-full px-4 py-3 text-left hover:bg-[#ff8c42]/20 border-b border-white/10 last:border-b-0 transition-colors"
+              className="w-full px-4 py-3 text-left hover:bg-white/5 border-b border-white/5 last:border-b-0 transition-colors"
             >
-              <div className="font-medium text-white">
+              <div className="font-medium text-foreground text-sm">
                 {suggestion.display_name}
               </div>
-              <div className="text-xs text-gray-400 mt-1">
+              <div className="text-xs text-muted-foreground mt-1">
                 {suggestion.type} • {parseFloat(suggestion.lat).toFixed(4)},{" "}
                 {parseFloat(suggestion.lon).toFixed(4)}
               </div>
