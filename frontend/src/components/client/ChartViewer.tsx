@@ -53,7 +53,7 @@ export default function ChartViewer() {
 
   if (loading) {
     return (
-      <div className="h-96 flex items-center justify-center text-white/30 animate-pulse">
+      <div className="h-96 flex items-center justify-center text-muted-foreground animate-pulse">
         Generating your Vedic Charts...
       </div>
     );
@@ -62,8 +62,8 @@ export default function ChartViewer() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-reveal">
       {/* d1 chart card */}
-      <div className="flex flex-col items-center p-6 rounded-2xl bg-white/5 border border-white/10">
-        <h3 className="text-xl font-serif text-amber-100 mb-4">
+      <div className="flex flex-col items-center p-6 rounded-2xl bg-card/40 border border-white/5">
+        <h3 className="text-xl font-serif text-foreground mb-4">
           Lagna Chart (D1)
         </h3>
         {d1Image ? (
@@ -73,19 +73,19 @@ export default function ChartViewer() {
             className="w-full max-w-sm rounded-lg shadow-lg border border-white/5"
           />
         ) : (
-          <div className="w-full h-64 bg-black/20 rounded flex items-center justify-center text-white/20">
+          <div className="w-full h-64 bg-black/20 rounded flex items-center justify-center text-muted-foreground/50 text-sm">
             Chart Unavailable
           </div>
         )}
-        <p className="text-sm text-white/40 mt-4 text-center">
+        <p className="text-sm text-muted-foreground mt-4 text-center">
           The primary birth chart representing your physical body and general
           destiny.
         </p>
       </div>
 
       {/* d9 chart card */}
-      <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col items-center">
-        <h3 className="text-xl font-serif text-amber-100 mb-4">
+      <div className="bg-card/40 border border-white/5 rounded-2xl p-6 flex flex-col items-center">
+        <h3 className="text-xl font-serif text-foreground mb-4">
           Navamsa Chart (D9)
         </h3>
         {d9Image ? (
@@ -95,11 +95,11 @@ export default function ChartViewer() {
             className="w-full max-w-sm rounded-lg shadow-lg border border-white/5"
           />
         ) : (
-          <div className="w-full h-64 bg-black/20 rounded flex items-center justify-center text-white/20">
+          <div className="w-full h-64 bg-black/20 rounded flex items-center justify-center text-muted-foreground/50 text-sm">
             Chart Unavailable
           </div>
         )}
-        <p className="text-sm text-white/40 mt-4 text-center">
+        <p className="text-sm text-muted-foreground mt-4 text-center">
           The chart of the soul and internal strength, primarily used for
           marriage and fruit of karma.
         </p>

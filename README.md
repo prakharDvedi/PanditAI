@@ -1,9 +1,8 @@
-# PanditAI 
+# PanditAI
 
 A Neuro-Symbolic Vedic Astrology application that combines ancient astrological wisdom with modern AI.
 <img width="1840" height="1029" alt="image" src="https://github.com/user-attachments/assets/e311bb49-f84d-489d-8d82-b18756d43275" />
 <img width="1841" height="1033" alt="image" src="https://github.com/user-attachments/assets/f535c9ac-8587-41cd-bbd3-80bc57cb85f5" />
-
 
 ## What It Is
 
