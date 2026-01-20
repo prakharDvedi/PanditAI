@@ -93,6 +93,19 @@ npm run dev
 
 Visit `http://localhost:3000`
 
+### 3. Running with Docker (Recommended)
+
+This sets up the Frontend, Backend, and Neo4j Database automatically.
+
+1. Ensure **Docker Desktop** is installed and running.
+2. Run the build command:
+
+```bash
+docker-compose up --build
+```
+
+3. The app will be available at `http://localhost:3000`.
+
 ## Environment Variables
 
 Create `backend/.env`:
