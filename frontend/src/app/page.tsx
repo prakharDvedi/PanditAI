@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="relative flex flex-col min-h-screen w-full overflow-hidden bg-background text-foreground selection:bg-primary/30">
-      {/* Background: Subtle Warm Gradient Mesh (SSR) */}
+      {/* bg gradient*/}
       <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/10 via-background to-background pointer-events-none" />
 
       <main className="relative z-10 flex flex-1 flex-col lg:flex-row items-center justify-center gap-12 p-6 lg:p-24">
-        {/* Left Side: Static SEO Content (SSR) */}
+        {/* left side static */}
         <div className="text-center lg:text-left space-y-6 max-w-2xl">
           <h2 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight drop-shadow-xl font-serif">
             Welcome to <br />
@@ -28,7 +28,7 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Right Side: Interactive Client Form */}
+        {/* right side form */}
         <HomeClient />
       </main>
     </div>

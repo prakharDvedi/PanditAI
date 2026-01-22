@@ -40,11 +40,11 @@ export default function HomeClient() {
 
       const payload = {
         year: date.getFullYear(),
-        month: date.getMonth() + 1, // months are 0-indexed
+        month: date.getMonth() + 1,
         day: date.getDate(),
         hour: hours,
         minute: minutes,
-        timezone: 5.5, // default to ist
+        timezone: 5.5,
         latitude: formData.lat,
         longitude: formData.lon,
         ayanamsa: formData.ayanamsa.toUpperCase(),
