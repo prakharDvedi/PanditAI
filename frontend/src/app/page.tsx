@@ -18,9 +18,7 @@ export default function Home() {
         <div className="text-center lg:text-left space-y-6 max-w-2xl">
           <h2 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight drop-shadow-xl font-serif">
             Welcome to <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">
-              PanditAI
-            </span>
+            <span className="text-primary">PanditAI</span>
           </h2>
           <p className="text-xl text-muted-foreground font-light max-w-lg mx-auto lg:mx-0">
             Ancient Vedic astrology met with modern AI. Reveal your cosmic
