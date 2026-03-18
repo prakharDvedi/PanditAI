@@ -1,14 +1,13 @@
-# PanditAI
+<img width="1574" height="833" alt="image" src="https://github.com/user-attachments/assets/7e2ba9e6-ce4f-4d84-adf3-46d805576479" /># PanditAI
 
 A Neuro-Symbolic Vedic Astrology application that combines ancient astrological wisdom with modern AI.
-<img width="1840" height="1029" alt="image" src="https://github.com/user-attachments/assets/e311bb49-f84d-489d-8d82-b18756d43275" />
-<img width="1841" height="1033" alt="image" src="https://github.com/user-attachments/assets/f535c9ac-8587-41cd-bbd3-80bc57cb85f5" />
+
 
 ## UI Screenshots
+<img width="1574" height="833" alt="image" src="https://github.com/user-attachments/assets/6acc4394-80a7-4978-8fdd-fbbbc50fcc65" />
+<img width="1728" height="868" alt="image" src="https://github.com/user-attachments/assets/154f5a1a-7b46-4d38-b4e1-9cbcbbafffcc" />
 
-![Home](docs/screenshots/home.svg)
-![Prediction](docs/screenshots/prediction.svg)
-![Matching](docs/screenshots/matching.svg)
+
 
 ## Design System
 
@@ -40,11 +39,11 @@ PanditAI generates personalized Vedic horoscope readings by:
 
 ## Features
 
-- ✨ Precise astronomical calculations (Planets, Houses, Ascendant)
-- 📊 Advanced techniques (Navamsa D9, Jaimini Karakas, Arudha Padas)
-- 🧠 AI-powered natural language readings
-- 🎨 Modern, responsive UI with dark theme
-- 🔮 Multiple Ayanamsa systems (Lahiri, Raman, KP)
+- Precise astronomical calculations (Planets, Houses, Ascendant)
+- Advanced techniques (Navamsa D9, Jaimini Karakas, Arudha Padas)
+- AI-powered natural language readings
+- Modern, responsive UI with dark theme
+- Multiple Ayanamsa systems (Lahiri, Raman, KP)
 
 ## How It Works
 
