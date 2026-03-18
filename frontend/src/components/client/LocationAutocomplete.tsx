@@ -26,7 +26,6 @@ export default function LocationAutocomplete({
   const [isLoading, setIsLoading] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  // close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -40,7 +39,6 @@ export default function LocationAutocomplete({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // fetch suggestions from nominatim
   useEffect(() => {
     if (query.length < 3) {
       setSuggestions([]);
@@ -52,7 +50,7 @@ export default function LocationAutocomplete({
       setIsLoading(true);
       try {
         const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
-          query,
+          query
         )}&format=json&limit=5&addressdetails=1`;
         const response = await fetch(url, {
           headers: {
@@ -68,7 +66,7 @@ export default function LocationAutocomplete({
       } finally {
         setIsLoading(false);
       }
-    }, 500); // this 500 is  debounce: wait 500ms after user stops typing
+    }, 500);
 
     return () => clearTimeout(timeoutId);
   }, [query]);
@@ -90,28 +88,30 @@ export default function LocationAutocomplete({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Start typing city name..."
-        className="w-full px-4 py-3 rounded-xl bg-input/40 border border-white/10 text-foreground placeholder-muted-foreground/50 font-light focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all"
+        aria-label="Location search"
+        className="w-full px-4 py-2 rounded-[var(--radius)] bg-background border border-border text-foreground placeholder:text-muted-foreground focus-ring"
       />
 
       {isLoading && (
-        <div className="absolute right-3 top-3.5">
-          <div className="w-5 h-5 border-2 border-primary/50 border-t-transparent rounded-full animate-spin"></div>
+        <div className="absolute right-2 top-2">
+          <div className="w-4 h-4 border-2 border-primary/50 border-t-transparent rounded-[var(--radius)] animate-spin"></div>
         </div>
       )}
 
       {isOpen && suggestions.length > 0 && (
-        <div className="absolute z-50 w-full mt-1 max-h-60 overflow-y-auto rounded-lg bg-card border border-white/10 shadow-2xl">
+        <div className="absolute z-50 w-full mt-2 max-h-60 overflow-y-auto rounded-[var(--radius)] bg-card border border-border shadow-[var(--shadow-elev)]">
           {suggestions.map((suggestion, index) => (
             <button
               key={index}
+              type="button"
               onClick={() => handleSelect(suggestion)}
-              className="w-full px-4 py-3 text-left hover:bg-white/5 border-b border-white/5 last:border-b-0 transition-colors"
+              className="w-full px-4 py-2 text-left hover:bg-background border-b border-border last:border-b-0 transition-colors"
             >
-              <div className="font-medium text-foreground text-sm">
+              <div className="type-sm text-foreground">
                 {suggestion.display_name}
               </div>
-              <div className="text-xs text-muted-foreground mt-1">
-                {suggestion.type} • {parseFloat(suggestion.lat).toFixed(4)},{" "}
+              <div className="type-sm text-muted-foreground mt-2">
+                {suggestion.type} - {parseFloat(suggestion.lat).toFixed(4)},{" "}
                 {parseFloat(suggestion.lon).toFixed(4)}
               </div>
             </button>

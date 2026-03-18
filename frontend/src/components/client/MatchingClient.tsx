@@ -68,7 +68,7 @@ export default function MatchingClient() {
       setResult(data);
     } catch (e) {
       console.error(e);
-      alert("Matching Failed");
+      alert("Matching failed");
     } finally {
       setLoading(false);
     }
@@ -96,89 +96,77 @@ export default function MatchingClient() {
   };
 
   return (
-    <div className="relative flex flex-col min-h-screen w-full overflow-hidden bg-[#030014] text-foreground selection:bg-purple-500/30">
-      {/* background gradient */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#0a0514] via-[#050505] to-[#020103]" />
-
-      {/* ambient orbs */}
-      <div className="absolute top-[-10%] left-[-10%] z-0 w-[500px] h-[500px] rounded-full bg-purple-600/20 blur-[120px] pointer-events-none mix-blend-screen animate-pulse-slow" />
-      <div className="absolute bottom-[-10%] right-[-10%] z-0 w-[600px] h-[600px] rounded-full bg-amber-600/10 blur-[150px] pointer-events-none mix-blend-screen animate-pulse-slower" />
-
-      {/* noise overlay */}
-      <div
-        className="absolute inset-0 z-[1] opacity-[0.03] pointer-events-none mix-blend-overlay"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
-
-      <header className="sticky top-0 z-20 border-b border-white/10 bg-black/20 backdrop-blur-md">
+    <div className="relative flex flex-col min-h-screen w-full bg-background text-foreground selection:bg-primary/20">
+      <header className="sticky top-0 z-20 border-b border-border bg-background">
         <div className="flex items-center justify-between h-16 max-w-6xl mx-auto px-6">
           <Link
             href="/"
-            className="text-sm font-medium text-white/60 hover:text-amber-400 transition"
+            className="type-sm text-muted-foreground hover:text-foreground focus-ring"
           >
-            ← Back Home
+            Back home
           </Link>
-          <h1 className="text-lg font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-orange-400">
-            COMPATIBILITY CHECK
+          <h1 className="type-lg font-heading text-foreground">
+            Compatibility Check
           </h1>
           <div className="w-12" />
         </div>
       </header>
 
       <main className="relative z-10 max-w-6xl mx-auto p-6 md:p-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <section className="relative group p-8 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl shadow-2xl">
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity" />
-
-            <h2 className="flex items-center gap-2 mb-6 text-xs font-bold text-amber-500/80 uppercase tracking-widest">
-              <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-              First Person
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <section className="p-4 rounded-[var(--radius)] bg-card border border-border shadow-[var(--shadow-subtle)]">
+            <h2 className="type-sm uppercase tracking-widest text-muted-foreground mb-4">
+              First person
             </h2>
             <div className="space-y-4">
               <input
                 type="text"
-                placeholder="Full Name"
-                className="w-full px-4 py-3 text-sm text-white placeholder-white/20 rounded-xl bg-black/20 border border-white/10 outline-none transition focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/20"
+                placeholder="Full name"
+                aria-label="First person full name"
+                className="w-full px-4 py-2 type-md text-foreground placeholder:text-muted-foreground rounded-[var(--radius)] bg-background border border-border focus-ring"
                 value={p1.name}
                 onChange={(e) => updateP1("name", e.target.value)}
               />
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 gap-4">
                 <input
                   type="number"
                   placeholder="DD"
-                  className="px-4 py-3 text-sm text-white placeholder-white/20 rounded-xl bg-black/20 border border-white/10 outline-none transition focus:border-amber-500/50"
+                  aria-label="First person day of birth"
+                  className="px-4 py-2 type-md text-foreground placeholder:text-muted-foreground rounded-[var(--radius)] bg-background border border-border focus-ring"
                   value={p1.day}
                   onChange={(e) => updateP1("day", parseInt(e.target.value))}
                 />
                 <input
                   type="number"
                   placeholder="MM"
-                  className="px-4 py-3 text-sm text-white placeholder-white/20 rounded-xl bg-black/20 border border-white/10 outline-none transition focus:border-amber-500/50"
+                  aria-label="First person month of birth"
+                  className="px-4 py-2 type-md text-foreground placeholder:text-muted-foreground rounded-[var(--radius)] bg-background border border-border focus-ring"
                   value={p1.month}
                   onChange={(e) => updateP1("month", parseInt(e.target.value))}
                 />
                 <input
                   type="number"
                   placeholder="YYYY"
-                  className="px-4 py-3 text-sm text-white placeholder-white/20 rounded-xl bg-black/20 border border-white/10 outline-none transition focus:border-amber-500/50"
+                  aria-label="First person year of birth"
+                  className="px-4 py-2 type-md text-foreground placeholder:text-muted-foreground rounded-[var(--radius)] bg-background border border-border focus-ring"
                   value={p1.year}
                   onChange={(e) => updateP1("year", parseInt(e.target.value))}
                 />
               </div>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-4">
                 <input
                   type="number"
                   placeholder="Hour"
-                  className="px-4 py-3 text-sm text-white placeholder-white/20 rounded-xl bg-black/20 border border-white/10 outline-none transition focus:border-amber-500/50"
+                  aria-label="First person birth hour"
+                  className="px-4 py-2 type-md text-foreground placeholder:text-muted-foreground rounded-[var(--radius)] bg-background border border-border focus-ring"
                   value={p1.hour}
                   onChange={(e) => updateP1("hour", parseInt(e.target.value))}
                 />
                 <input
                   type="number"
-                  placeholder="Min"
-                  className="px-4 py-3 text-sm text-white placeholder-white/20 rounded-xl bg-black/20 border border-white/10 outline-none transition focus:border-amber-500/50"
+                  placeholder="Minute"
+                  aria-label="First person birth minute"
+                  className="px-4 py-2 type-md text-foreground placeholder:text-muted-foreground rounded-[var(--radius)] bg-background border border-border focus-ring"
                   value={p1.minute}
                   onChange={(e) => updateP1("minute", parseInt(e.target.value))}
                 />
@@ -187,56 +175,59 @@ export default function MatchingClient() {
             </div>
           </section>
 
-          <section className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl relative group">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none rounded-2xl" />
-
-            <h2 className="text-xs font-bold uppercase tracking-widest text-purple-400/80 mb-6 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-purple-400"></span>
-              Second Person
+          <section className="p-4 rounded-[var(--radius)] bg-card border border-border shadow-[var(--shadow-subtle)]">
+            <h2 className="type-sm uppercase tracking-widest text-muted-foreground mb-4">
+              Second person
             </h2>
             <div className="space-y-4">
               <input
                 type="text"
-                placeholder="Full Name"
-                className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition text-white placeholder-white/20"
+                placeholder="Full name"
+                aria-label="Second person full name"
+                className="w-full px-4 py-2 type-md text-foreground placeholder:text-muted-foreground rounded-[var(--radius)] bg-background border border-border focus-ring"
                 value={p2.name}
                 onChange={(e) => updateP2("name", e.target.value)}
               />
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-3 gap-4">
                 <input
                   type="number"
                   placeholder="DD"
-                  className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-purple-500/50 transition text-white placeholder-white/20"
+                  aria-label="Second person day of birth"
+                  className="px-4 py-2 type-md text-foreground placeholder:text-muted-foreground rounded-[var(--radius)] bg-background border border-border focus-ring"
                   value={p2.day}
                   onChange={(e) => updateP2("day", parseInt(e.target.value))}
                 />
                 <input
                   type="number"
                   placeholder="MM"
-                  className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-purple-500/50 transition text-white placeholder-white/20"
+                  aria-label="Second person month of birth"
+                  className="px-4 py-2 type-md text-foreground placeholder:text-muted-foreground rounded-[var(--radius)] bg-background border border-border focus-ring"
                   value={p2.month}
                   onChange={(e) => updateP2("month", parseInt(e.target.value))}
                 />
                 <input
                   type="number"
                   placeholder="YYYY"
-                  className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-purple-500/50 transition text-white placeholder-white/20"
+                  aria-label="Second person year of birth"
+                  className="px-4 py-2 type-md text-foreground placeholder:text-muted-foreground rounded-[var(--radius)] bg-background border border-border focus-ring"
                   value={p2.year}
                   onChange={(e) => updateP2("year", parseInt(e.target.value))}
                 />
               </div>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-4">
                 <input
                   type="number"
                   placeholder="Hour"
-                  className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-purple-500/50 transition text-white placeholder-white/20"
+                  aria-label="Second person birth hour"
+                  className="px-4 py-2 type-md text-foreground placeholder:text-muted-foreground rounded-[var(--radius)] bg-background border border-border focus-ring"
                   value={p2.hour}
                   onChange={(e) => updateP2("hour", parseInt(e.target.value))}
                 />
                 <input
                   type="number"
-                  placeholder="Min"
-                  className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-sm outline-none focus:border-purple-500/50 transition text-white placeholder-white/20"
+                  placeholder="Minute"
+                  aria-label="Second person birth minute"
+                  className="px-4 py-2 type-md text-foreground placeholder:text-muted-foreground rounded-[var(--radius)] bg-background border border-border focus-ring"
                   value={p2.minute}
                   onChange={(e) => updateP2("minute", parseInt(e.target.value))}
                 />
@@ -250,76 +241,59 @@ export default function MatchingClient() {
           <button
             onClick={handleMatch}
             disabled={loading}
-            className="w-full md:w-auto px-12 py-4 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-bold rounded-xl shadow-lg shadow-amber-900/20 disabled:opacity-50 active:scale-95 transition-all duration-300 uppercase tracking-widest text-sm"
+            className="w-full md:w-auto px-6 py-2 type-md font-semibold text-white rounded-[var(--radius)] bg-primary hover:bg-primary/90 transition-colors disabled:opacity-50"
+            aria-busy={loading}
           >
             {loading ? (
-              <span className="flex items-center gap-3">
-                <span className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></span>
-                Calculating Alignment...
+              <span className="flex items-center gap-2">
+                <span className="animate-spin rounded-[var(--radius)] h-4 w-4 border-2 border-white/70 border-t-transparent"></span>
+                Calculating alignment...
               </span>
             ) : (
-              "Calculate Match"
+              "Calculate match"
             )}
           </button>
         </div>
 
         {result && (
-          <div className="mt-16 bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-[0_0_50px_-12px_rgba(255,165,0,0.1)] animate-in fade-in slide-in-from-bottom-8 duration-700">
-            <div className="flex flex-col md:flex-row items-start gap-10 mb-10">
-              <div className="relative shrink-0">
-                <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-orange-600 rounded-full opacity-20 blur-xl animate-pulse"></div>
-                <div className="w-32 h-32 rounded-full border-2 border-white/10 flex items-center justify-center bg-black/40 relative z-10 backdrop-blur-sm">
+          <div className="mt-8 bg-card border border-border rounded-[var(--radius)] p-4 md:p-6 shadow-[var(--shadow-subtle)]">
+            <div className="flex flex-col md:flex-row items-start gap-6 mb-6">
+              <div className="shrink-0">
+                <div className="w-24 h-24 rounded-[var(--radius)] border border-border flex items-center justify-center bg-background">
                   <div className="text-center">
-                    <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-br from-amber-200 to-orange-400">
+                    <div className="type-xl font-heading text-primary">
                       {result.analysis?.score}
                     </div>
-                    <div className="text-[10px] text-white/40 font-bold uppercase tracking-wider mt-1">
-                      / 36 Points
+                    <div className="type-sm text-muted-foreground">
+                      / 36 points
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="flex-1 text-center md:text-left">
-                <h3 className="text-2xl font-bold mb-6 text-white/90 border-b border-white/10 pb-4">
-                  Cosmic Alignment Report
+              <div className="flex-1">
+                <h3 className="type-lg font-heading mb-4 text-foreground">
+                  Alignment report
                 </h3>
-                <div className="text-white/70 leading-relaxed text-base font-light space-y-4">
+                <div className="type-md text-muted-foreground space-y-4">
                   {result.ai_verdict
                     .split("\n")
                     .map((line: string, i: number) => {
-                      // parse bold keys
                       const match = line.match(/^\*\s*\*\*(.*?)\*\*:\s*(.*)/);
                       if (match) {
                         const [_, key, value] = match;
-                        const isVerdict = key.toLowerCase().includes("verdict");
                         return (
                           <div
                             key={i}
-                            className={`flex flex-col md:flex-row gap-2 md:gap-4 items-start ${
-                              isVerdict
-                                ? "bg-white/5 p-4 rounded-xl border border-white/5 mt-4"
-                                : ""
-                            }`}
+                            className="flex flex-col md:flex-row gap-2 md:gap-4 items-start"
                           >
-                            <span
-                              className={`text-amber-400 font-bold shrink-0 md:w-32 text-left ${
-                                isVerdict ? "text-amber-200 md:w-auto" : ""
-                              }`}
-                            >
+                            <span className="text-foreground font-semibold shrink-0 md:w-32">
                               {key}:
                             </span>
-                            <span
-                              className={
-                                isVerdict ? "test-white font-medium" : ""
-                              }
-                            >
-                              {value}
-                            </span>
+                            <span>{value}</span>
                           </div>
                         );
                       }
-                      // handle regular lines
                       if (!line.trim()) return <br key={i} />;
                       return <div key={i}>{line}</div>;
                     })}
@@ -328,24 +302,24 @@ export default function MatchingClient() {
             </div>
 
             {result.analysis?.details && (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-white/5 pt-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-border pt-4">
                 {Object.entries(result.analysis.details).map(
                   ([key, val]: [string, any]) => (
                     <div
                       key={key}
-                      className="bg-black/20 border border-white/5 rounded-xl p-4 hover:bg-white/5 transition-colors"
+                      className="bg-background border border-border rounded-[var(--radius)] p-4"
                     >
-                      <div className="text-[10px] font-bold text-white/40 uppercase mb-2 tracking-widest">
+                      <div className="type-sm text-muted-foreground uppercase mb-2 tracking-widest">
                         {key}
                       </div>
-                      <div className="text-xl font-bold text-white/90">
+                      <div className="type-lg font-heading text-foreground">
                         {val}{" "}
-                        <span className="text-xs font-normal text-white/30">
+                        <span className="type-sm font-normal text-muted-foreground">
                           pts
                         </span>
                       </div>
                     </div>
-                  ),
+                  )
                 )}
               </div>
             )}

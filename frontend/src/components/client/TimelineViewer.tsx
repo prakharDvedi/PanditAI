@@ -19,7 +19,7 @@ export default function TimelineViewer({ timeline }: TimelineProps) {
 
   if (!timeline || timeline.length === 0) {
     return (
-      <div className="h-64 flex items-center justify-center text-white/30">
+      <div className="h-64 flex items-center justify-center type-sm text-muted-foreground">
         No timeline data available.
       </div>
     );
@@ -30,68 +30,60 @@ export default function TimelineViewer({ timeline }: TimelineProps) {
   };
 
   return (
-    <div className="max-w-3xl mx-auto animate-reveal">
-      <div className="relative border-l border-white/10 ml-4 space-y-8 py-4">
+    <div className="max-w-3xl mx-auto">
+      <div className="relative border-l border-border ml-4 space-y-4 py-4">
         {timeline.map((period, idx) => {
           const isCurrent =
             new Date(period.start) <= new Date() &&
             new Date(period.end) >= new Date();
 
           return (
-            <div key={idx} className="relative pl-8">
-              {/* timeline dot */}
+            <div key={idx} className="relative pl-4">
               <div
-                className={`absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full border-2 ${
+                className={`absolute -left-2 top-2 w-2 h-2 rounded-[var(--radius)] border ${
                   isCurrent
-                    ? "bg-amber-400 border-amber-400 shadow-[0_0_10px_#fbbf24] animate-pulse"
-                    : "bg-black border-white/30"
+                    ? "bg-primary border-primary"
+                    : "bg-background border-border"
                 }`}
               />
 
-              {/* card */}
-              <div
-                className={`p-6 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                  isCurrent
-                    ? "bg-amber-900/10 border-amber-500/30 shadow-lg"
-                    : "bg-white/5 border-white/10 hover:bg-white/10"
-                }`}
+              <button
+                type="button"
                 onClick={() => toggleExpand(`${idx}`)}
+                className={`w-full text-left p-4 rounded-[var(--radius)] border transition-colors focus-ring ${
+                  isCurrent
+                    ? "bg-primary/5 border-primary/20"
+                    : "bg-card border-border hover:border-primary/20"
+                }`}
+                aria-expanded={expanded === `${idx}`}
               >
-                <div className="flex justify-between items-center mb-2">
-                  <h3
-                    className={`text-xl font-serif ${
-                      isCurrent ? "text-amber-200" : "text-white/90"
-                    }`}
-                  >
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
+                  <h3 className="type-lg font-heading text-foreground">
                     {period.lord} Mahadasha
                   </h3>
-                  <span className="text-xs font-mono opacity-50 uppercase tracking-wider">
-                    {period.start} — {period.end}
+                  <span className="type-sm text-muted-foreground uppercase tracking-widest">
+                    {period.start} - {period.end}
                   </span>
                 </div>
 
                 {isCurrent && (
-                  <div className="text-xs font-bold text-amber-400 mb-2">
-                    ● CURRENTLY ACTIVE
+                  <div className="type-sm font-semibold text-primary mb-2">
+                    Currently active
                   </div>
                 )}
 
-                {/* sub-periods (antardasha) */}
                 <div
-                  className={`overflow-hidden transition-all duration-500 ${
+                  className={`overflow-hidden transition-[max-height,opacity] duration-200 ${
                     expanded === `${idx}`
-                      ? "max-h-96 opacity-100 mt-4"
+                      ? "max-h-96 opacity-100 mt-2"
                       : "max-h-0 opacity-0"
                   }`}
                 >
-                  <div className="space-y-2 pl-4 border-l border-white/10">
+                  <div className="space-y-2 pl-4 border-l border-border">
                     {period.sub_periods?.map((sub, sIdx) => (
-                      <div
-                        key={sIdx}
-                        className="flex justify-between text-sm py-1"
-                      >
-                        <span className="text-white/70">{sub.lord}</span>
-                        <span className="text-white/30 font-mono text-xs">
+                      <div key={sIdx} className="flex justify-between type-sm">
+                        <span className="text-foreground">{sub.lord}</span>
+                        <span className="text-muted-foreground">
                           {sub.end}
                         </span>
                       </div>
@@ -99,10 +91,10 @@ export default function TimelineViewer({ timeline }: TimelineProps) {
                   </div>
                 </div>
 
-                <div className="text-center mt-2 opacity-30 text-xs">
-                  {expanded === `${idx}` ? "Collapse ▲" : "View Antardashas ▼"}
+                <div className="text-center mt-2 type-sm text-muted-foreground">
+                  {expanded === `${idx}` ? "Collapse" : "View antardashas"}
                 </div>
-              </div>
+              </button>
             </div>
           );
         })}

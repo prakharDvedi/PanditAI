@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Send, Sparkles, User, Stars } from "lucide-react";
+import { IconSend, IconSparkles, IconUser } from "@/components/icons/PanditIcons";
 
 interface Message {
   role: "user" | "assistant";
@@ -17,7 +17,7 @@ export default function AstrologerChat({ context }: ChatProps) {
     {
       role: "assistant",
       content:
-        "Namaste. I have analyzed your chart. Ask me anything about your career, relationships, destiny, and how to make your life better",
+        "Namaste. I have analyzed your chart. Ask me about career, relationships, or your next steps.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -34,7 +34,7 @@ export default function AstrologerChat({ context }: ChatProps) {
   }, [messages]);
 
   const sendMessage = async () => {
-    if (!input.trim()) return;
+    if (!input.trim() || loading) return;
 
     const newMsg: Message = { role: "user", content: input };
     setMessages((prev) => [...prev, newMsg]);
@@ -63,7 +63,7 @@ export default function AstrologerChat({ context }: ChatProps) {
         {
           role: "assistant",
           content:
-            "The cosmic connection is faint right now. Please try again in a moment.",
+            "The connection is faint right now. Please try again in a moment.",
         },
       ]);
     } finally {
@@ -72,107 +72,101 @@ export default function AstrologerChat({ context }: ChatProps) {
   };
 
   return (
-    <div className="max-w-2xl mx-auto h-[550px] flex flex-col rounded-3xl border border-white/10 bg-[#0a0514]/50 backdrop-blur-3xl shadow-2xl overflow-hidden relative group">
-      {/* background glow */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-[80px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-violet-600/10 rounded-full blur-[80px] pointer-events-none" />
-
-      {/* header */}
-      <div className="p-4 border-b border-white/5 bg-white/5 flex items-center justify-between backdrop-blur-md z-10">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-            <Stars className="w-4 h-4" />
+    <div className="max-w-2xl mx-auto h-[560px] flex flex-col rounded-[var(--radius)] border border-border bg-card shadow-[var(--shadow-elev)] overflow-hidden">
+      <div className="p-4 border-b border-border bg-background flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="p-2 rounded-[var(--radius)] bg-primary/10 text-primary border border-primary/20">
+            <IconSparkles size={16} />
           </div>
           <div>
-            <h3 className="text-sm font-medium text-white tracking-wide">
-              PanditAI
-            </h3>
-            <div className="flex items-center gap-1.5 opacity-60">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-[10px] uppercase tracking-widest text-white">
-                Online
-              </span>
+            <h3 className="type-md font-heading text-foreground">PanditAI</h3>
+            <div className="flex items-center gap-2 text-muted-foreground type-sm">
+              <span className="inline-block w-2 h-2 rounded-[var(--radius)] bg-[var(--color-success)]" />
+              Online
             </div>
           </div>
         </div>
       </div>
 
-      {/* messages area */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent z-10"
+        role="log"
+        aria-live="polite"
+        aria-busy={loading}
+        className="flex-1 overflow-y-auto p-4 space-y-4"
       >
         {messages.map((m, idx) => (
           <div
             key={idx}
-            className={`flex gap-3 ${
+            className={`flex gap-2 ${
               m.role === "user" ? "justify-end" : "justify-start"
             }`}
           >
-            {/* ai avatar */}
             {m.role === "assistant" && (
-              <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 flex-shrink-0 mt-1">
-                <Sparkles className="w-4 h-4 text-indigo-300" />
+              <div className="w-8 h-8 rounded-[var(--radius)] bg-background flex items-center justify-center border border-border flex-shrink-0">
+                <IconSparkles size={14} />
               </div>
             )}
 
             <div
-              className={`max-w-[75%] p-4 rounded-2xl text-sm leading-relaxed shadow-lg backdrop-blur-sm ${
+              className={`max-w-[75%] p-4 rounded-[var(--radius)] border type-sm ${
                 m.role === "user"
-                  ? "bg-indigo-600/20 text-indigo-50 border border-indigo-500/30 rounded-tr-none"
-                  : "bg-white/5 text-white/80 border border-white/5 rounded-tl-none"
+                  ? "bg-primary text-white border-primary/30"
+                  : "bg-background text-foreground border-border"
               }`}
             >
               {m.content}
             </div>
 
-            {/* user avatar */}
             {m.role === "user" && (
-              <div className="w-8 h-8 rounded-full bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20 flex-shrink-0 mt-1">
-                <User className="w-4 h-4 text-indigo-300" />
+              <div className="w-8 h-8 rounded-[var(--radius)] bg-primary/10 flex items-center justify-center border border-primary/20 flex-shrink-0">
+                <IconUser size={14} />
               </div>
             )}
           </div>
         ))}
 
         {loading && (
-          <div className="flex gap-3">
-            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10 flex-shrink-0">
-              <Sparkles className="w-4 h-4 text-indigo-300 animate-spin-slow" />
-            </div>
-            <div className="bg-white/5 px-4 py-3 rounded-2xl rounded-tl-none text-white/40 text-xs flex items-center gap-2">
-              <span className="animate-bounce">●</span>
-              <span className="animate-bounce delay-100">●</span>
-              <span className="animate-bounce delay-200">●</span>
-            </div>
+          <div className="flex gap-2 items-center text-muted-foreground type-sm">
+            <span className="inline-flex h-6 w-6 items-center justify-center rounded-[var(--radius)] border border-border bg-background">
+              <span className="inline-block h-2 w-2 rounded-[var(--radius)] border-2 border-muted-foreground border-t-transparent animate-spin" />
+            </span>
+            PanditAI is thinking...
           </div>
         )}
       </div>
 
-      {/* input area */}
-      <div className="p-4 border-t border-white/5 bg-white/[0.02] z-10 backdrop-blur-md">
+      <div className="p-4 border-t border-border bg-background">
         <div className="relative flex items-center gap-2">
+          <label htmlFor="chat-input" className="sr-only">
+            Ask a question
+          </label>
           <input
+            id="chat-input"
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-            placeholder="Ask the stars..."
-            className="w-full pl-4 pr-12 py-3.5 text-sm text-white placeholder-white/30 rounded-xl bg-black/20 border border-white/10 shadow-inner transition-all focus:border-indigo-500/50 focus:outline-none focus:ring-1 focus:ring-indigo-500/20"
+            placeholder="Ask a question..."
+            className="w-full px-4 py-2 type-md text-foreground placeholder:text-muted-foreground rounded-[var(--radius)] border border-border bg-background focus-ring"
           />
           <button
+            type="button"
             onClick={sendMessage}
             disabled={loading || !input.trim()}
-            className="absolute right-2 p-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg transition-all disabled:opacity-0 disabled:scale-75 shadow-lg shadow-indigo-500/20"
+            className="focus-ring inline-flex items-center justify-center h-10 w-10 rounded-[var(--radius)] border border-border bg-primary text-white transition-colors disabled:opacity-60"
+            aria-label="Send message"
           >
-            <Send className="w-4 h-4" />
+            {loading ? (
+              <span className="inline-block h-4 w-4 rounded-[var(--radius)] border-2 border-white/70 border-t-transparent animate-spin" />
+            ) : (
+              <IconSend size={16} />
+            )}
           </button>
         </div>
-        <div className="text-center mt-2">
-          <p className="text-[10px] text-white/20 uppercase tracking-widest">
-            AI can make mistakes. Astrology cannot
-          </p>
-        </div>
+        <p className="text-center mt-2 type-sm text-muted-foreground">
+          AI can make mistakes. Verify important decisions.
+        </p>
       </div>
     </div>
   );
