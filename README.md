@@ -1,5 +1,3 @@
-<img width="1574" height="833" alt="image" src="https://github.com/user-attachments/assets/7e2ba9e6-ce4f-4d84-adf3-46d805576479" /># PanditAI
-
 A Neuro-Symbolic Vedic Astrology application that combines ancient astrological wisdom with modern AI.
 
 
