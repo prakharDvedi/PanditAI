@@ -71,15 +71,15 @@
   --line-sm: 20px;
 
   /* color palette */
-  --color-bg: #ffffff;
-  --color-surface: #f7f7f8;
-  --color-text: #0f1720;
-  --color-muted: #667085;
-  --color-primary: #0b6cff;
-  --color-primary-600: #0558d6;
-  --color-success: #0f9d58;
-  --color-danger: #d64545;
-  --color-border: #e6e9ee;
+  --color-bg: #eed9b9;
+  --color-surface: #f3e3cf;
+  --color-text: #5e0006;
+  --color-muted: #9b0f06;
+  --color-primary: #d53e0f;
+  --color-primary-600: #9b0f06;
+  --color-success: #d53e0f;
+  --color-danger: #9b0f06;
+  --color-border: #d7c2a6;
 
   /* radius, shadow, transitions */
   --radius: 8px;
@@ -88,7 +88,7 @@
   --motion-fast: 150ms;
   --motion-medium: 220ms;
   --motion-ease: cubic-bezier(0.2, 0.9, 0.2, 1);
-  --focus-ring: 0 0 0 3px rgba(11, 108, 255, 0.18);
+  --focus-ring: 0 0 0 3px rgba(213, 62, 15, 0.2);
 
   /* tailwind tokens */
   --background: var(--color-bg);
@@ -111,10 +111,10 @@
   --ring: var(--color-primary);
 
   --chart-1: var(--color-primary);
-  --chart-2: #1f6feb;
-  --chart-3: #2c3e50;
-  --chart-4: #3f5e78;
-  --chart-5: #58738f;
+  --chart-2: #9b0f06;
+  --chart-3: #5e0006;
+  --chart-4: #d53e0f;
+  --chart-5: #eed9b9;
 
   --sidebar: var(--color-bg);
   --sidebar-foreground: var(--color-text);
